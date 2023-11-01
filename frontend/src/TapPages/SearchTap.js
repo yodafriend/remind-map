@@ -1,5 +1,5 @@
 import React from 'react';
-import Styles from './SearchPage.module.css';
+import Styles from './SearchTap.module.css';
 import SearchInput from '../common/SearchInput';
 import RoundTap from '../common/RoundTap';
 
@@ -7,9 +7,9 @@ import { AiFillStar } from 'react-icons/ai';
 import MakeBtn from '../common/MakeBtn';
 import MakeBtn2 from '../common/MakeBtn2';
 
-const searchPage = () => {
+const SearchTap = () => {
   return (
-    <div className={Styles.searchPage}>
+    <div className={Styles.searchTap}>
       <SearchInput />
       <RoundTap />
       <div className={Styles.searchMarker}>
@@ -29,4 +29,4 @@ const searchPage = () => {
   );
 };
 
-export default searchPage;
+export default SearchTap;

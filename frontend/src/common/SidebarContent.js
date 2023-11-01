@@ -1,21 +1,21 @@
 import React from 'react';
 import Styles from './SidebarMenu.module.css';
-import SearchPage from '../TapPages/SearchPage';
-import RankPage from '../TapPages/RankPage';
-import FavPage from '../TapPages/FavPage';
-import GroupPage from '../TapPages/GroupPage';
-import MarkerPage from '../TapPages/MarkerPage';
-import RoutePage from '../TapPages/RoutePage';
+import SearchTap from '../TapPages/SearchTap';
+import RankTap from '../TapPages/RankTap';
+import FavTap from '../TapPages/FavTap';
+import GroupTap from '../TapPages/GroupTap';
+import MarkerTap from '../TapPages/MarkerTap';
+import RouteTap from '../TapPages/RouteTap';
 
 const SidebarContent = ({ selectedTab }) => {
   return (
     <div className={Styles.sidebarContent}>
-      {selectedTab === '검색' && <SearchPage />}
-      {selectedTab === '랭킹' && <RankPage />}
-      {selectedTab === '찜' && <FavPage />}
-      {selectedTab === '그룹' && <GroupPage />}
-      {selectedTab === '마커' && <MarkerPage />}
-      {selectedTab === '루트' && <RoutePage />}
+      {selectedTab === '검색' && <SearchTap />}
+      {selectedTab === '랭킹' && <RankTap />}
+      {selectedTab === '찜' && <FavTap />}
+      {selectedTab === '그룹' && <GroupTap />}
+      {selectedTab === '마커' && <MarkerTap />}
+      {selectedTab === '루트' && <RouteTap />}
     </div>
   );
 };
