@@ -36,10 +36,7 @@ const Sidebar = () => {
           </>
         )}
       </div>
-      <OpenBtn
-        handleSidebarToggle={handleSidebarToggle}
-        isSidebarOpen={isSidebarOpen}
-      />
+      <OpenBtn handleSidebarToggle={handleSidebarToggle} isSidebarOpen={isSidebarOpen} />
     </div>
   );
 };
