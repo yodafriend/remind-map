@@ -31,14 +31,17 @@ svg {
   color: black;
 }
 
-.sidebarbtn:hover {
+.sidebarbtn:hover,
+.active {
   background-color: var(--main-color);
 }
 
-.sidebarbtn:hover svg {
+.sidebarbtn:hover svg,
+.active svg {
   fill: white;
 }
 
-.sidebarbtn:hover .btnName {
+.sidebarbtn:hover .btnName,
+.active .btnName {
   color: white;
 }
