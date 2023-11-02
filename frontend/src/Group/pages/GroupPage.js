@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function Group() {
+export default function GroupPage() {
   return <div>asd</div>;
 }
