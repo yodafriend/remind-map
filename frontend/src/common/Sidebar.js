@@ -6,7 +6,10 @@ import SidebarContent from './SidebarContent';
 const OpenBtn = ({ handleSidebarToggle, isSidebarOpen }) => {
   return (
     <div>
-      <button className={Styles.openBtn} onClick={handleSidebarToggle}>
+      <button
+        className={`${Styles.openBtn} ${isSidebarOpen ? '' : Styles.close} `}
+        onClick={handleSidebarToggle}
+      >
         {isSidebarOpen ? '◀' : '▶'}
       </button>
     </div>
@@ -21,22 +24,19 @@ const Sidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  // eslint-disable-next-line prettier/prettier
   const handleTabChange = tab => {
     setSelectedTab(tab);
   };
 
   return (
-    <div className={Styles.sidebarContainer}>
-      <div className={Styles.sidebar}>
-        {isSidebarOpen && (
-          <>
-            <SidebarMenu handleTabChange={handleTabChange} />
-            <SidebarContent selectedTab={selectedTab} />
-          </>
-        )}
+    <div>
+      <div className={Styles.sidebarContainer}>
+        <div className={`${Styles.sidebar} ${isSidebarOpen ? '' : Styles.close} `}>
+          <SidebarMenu handleTabChange={handleTabChange} selectedTab={selectedTab} />
+          <SidebarContent selectedTab={selectedTab} />
+        </div>
+        <OpenBtn handleSidebarToggle={handleSidebarToggle} isSidebarOpen={isSidebarOpen} />
       </div>
-      <OpenBtn handleSidebarToggle={handleSidebarToggle} isSidebarOpen={isSidebarOpen} />
     </div>
   );
 };
