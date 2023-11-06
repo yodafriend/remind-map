@@ -7,3 +7,8 @@
   justify-content: center;
   padding: 20px 0px;
 }
+.test {
+  border-color: var(--main-color);
+  font-size: var(--text-sm);
+  width: 80%;
+}
