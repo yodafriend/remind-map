@@ -16,10 +16,7 @@ const RoundTap = () => {
       >
         마커
       </button>
-      <button
-        className={`${activeMaker ? '' : Styles.active}`}
-        onClick={handleActiveRoot}
-      >
+      <button className={`${activeMaker ? '' : Styles.active}`} onClick={handleActiveRoot}>
         루트
       </button>
     </div>
