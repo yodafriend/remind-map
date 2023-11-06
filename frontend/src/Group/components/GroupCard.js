@@ -4,7 +4,7 @@ import Styles from './GroupCard.module.css';
 export default function GroupCard() {
   return (
     <div
-      className={`${Styles.CardContainer} flex min-w-fit md:w-full md:h-32 md:min-h-fit items-center justiy-center text-white rounded-md cursor-pointertransition-all`}
+      className={`${Styles.CardContainer} flex min-w-fit md:w-full md:h-32 md:min-h-fit items-center justiy-center text-white rounded-md cursor-pointer transition-all`}
     >
       <div className="w-6/12 md:h-32 md:flex items-center justify-center p-2 hidden">
         <img

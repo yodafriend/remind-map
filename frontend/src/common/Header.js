@@ -7,6 +7,7 @@ const Header = () => {
   return (
     <header className={Styles.header}>
       <div className={Styles.title}>📌 RemindMap</div>
+      <Link to="/">홈</Link>
       <Link to="/group">그룹</Link>
       <div className={Styles.userInfo}>
         <div className={Styles.userPhoto} />

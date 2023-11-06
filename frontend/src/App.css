@@ -24,6 +24,11 @@
   font-family: 'GmarketSansMedium';
 }
 
+input,
+textarea {
+  outline: none;
+}
+
 :root {
   /* 폰트 크기 */
   --text-xs: 12px;
