@@ -4,6 +4,7 @@
   border-right: var(--border-color) 1px solid;
   display: flex;
   flex-direction: column;
+  background-color: white;
 }
 
 .sidebarbtn {
