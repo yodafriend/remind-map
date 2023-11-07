@@ -10,7 +10,6 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Header />
-
         <Routes>
           <Route path="/" element={<Main />} />
           <Route exact path="/kakao/callback" element={<Redirect />} />
