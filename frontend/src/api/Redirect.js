@@ -6,6 +6,7 @@ const Redirect = () => {
   const code = new URL(document.location.toString()).searchParams.get('code');
   console.log(code);
   const navigate = useNavigate();
+  navigate('/');
 
   /*
   useEffect(() => {
@@ -18,8 +19,6 @@ const Redirect = () => {
       navigate('/');
     });
   }, []);*/
-
-  return <div>로그인 중입니다.</div>;
 };
 
 export default Redirect;
