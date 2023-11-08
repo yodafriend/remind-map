@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Styles from './SearchTap.module.css';
-import SearchInput from '../common/SearchInput';
-import RoundTap from '../common/RoundTap';
-import Posting from '../userPosting/Posting';
+import SearchInput from '../../common/input/SearchInput';
+import RoundTap from '../../common/btn/RoundTap';
+import Posting from '../../common/userposting/Posting';
 
 const SearchTap = () => {
   const [activeMaker, setActiveMaker] = useState(true);

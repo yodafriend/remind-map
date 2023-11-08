@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Main from './common/Main';
-import Header from './common/Header';
-import Sidebar from './common/Sidebar';
+import Main from './common/frame/Main';
+import Header from './common/frame/Header';
+import Sidebar from './common/frame/Sidebar';
 import Redirect from './api/Redirect';
-import PostingModal from './userPosting/PostingModal';
+import PostingModal from './common/userposting/PostingModal';
 
 function App() {
   return (
