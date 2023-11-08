@@ -9,43 +9,11 @@
 }
 
 .searchMarker {
-  width: 80%;
-  height: 100px;
-  background-color: var(--main-color);
-  border-radius: 3px;
-
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  padding: 0px 10px;
-}
-
-.searchMarkerInfo {
-  color: white;
-}
-
-.searchMarkerInfo .title {
-  font-size: var(--text-base);
-}
-
-.searchMarkerInfo .writer {
-  font-size: var(--text-sm);
-  font-family: 'GmarketSansLight';
-  padding-top: 10px;
-}
-
-.searchMarkerInfo .date {
-  font-size: var(--text-sm);
-  font-family: 'GmarketSansLight';
-  font-weight: 300;
-}
-
-.fav {
-  border: none;
-  background-color: transparent;
-}
-
-.fav svg {
-  fill: var(--disable-color);
-  font-size: 30px;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
 }

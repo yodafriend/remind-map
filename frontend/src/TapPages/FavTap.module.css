@@ -9,7 +9,7 @@
   padding: 20px 0px;
 }
 
-.post {
+.searchMarker {
   display: flex;
   flex-direction: column;
   align-items: center;

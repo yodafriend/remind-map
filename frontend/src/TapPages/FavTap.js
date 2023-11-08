@@ -1,27 +1,88 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Styles from './FavTap.module.css';
 import RoundTap from '../common/RoundTap';
-import Posting from '../common/Posting';
+import Posting from '../userPosting/Posting';
 
 const FavTap = () => {
-  const userPostingArr = [];
+  const [activeMaker, setActiveMaker] = useState(true);
+
+  const handleActiveRoute = () => {
+    setActiveMaker(!activeMaker);
+  };
+
+  const userMarkerArr = [
+    {
+      title: '홍대 개미',
+      writer: '작성자',
+      date: '2023-10-1',
+      fav: true,
+      latitude: 0,
+      longitued: 1,
+    },
+    { title: '피오니', writer: '작성자', date: '2023-10-2', fav: true, latitude: 0, longitued: 1 },
+    { title: '탕후루', writer: '작성자', date: '2023-10-3', fav: true, latitude: 0, longitued: 1 },
+    { title: '현우동', writer: '작성자', date: '2023-10-4', fav: true, latitude: 0, longitued: 1 },
+    {
+      title: '슈붕 파는 곳',
+      writer: '작성자',
+      date: '2023-10-5',
+      fav: true,
+      latitude: 0,
+      longitued: 1,
+    },
+    {
+      title: '파주 영어마을',
+      writer: '작성자',
+      date: '2023-10-5',
+      fav: true,
+      latitude: 0,
+      longitued: 1,
+    },
+  ];
+
+  const userRouteArr = [
+    {
+      title: '파주 여행',
+      writer: '작성자',
+      date: '2023-10-1',
+      fav: true,
+      latitude: 0,
+      longitued: 1,
+    },
+    {
+      title: '수원 데이트',
+      writer: '작성자',
+      date: '2023-10-2',
+      fav: true,
+      latitude: 0,
+      longitued: 1,
+    },
+  ];
 
   return (
     <div className={Styles.favTap}>
-      <RoundTap />
-      <div className={Styles.post}>
-        <Posting title="안녕" writer="작성자" date="2023-10-1" fav={true} />
-        <Posting title="안녕" writer="작성자" date="2023-10-2" fav={true} />
-        <Posting title="안녕" writer="작성자" date="2023-10-3" fav={true} />
-        <Posting title="안녕" writer="작성자" date="2023-10-4" fav={true} />
-        <Posting title="안녕" writer="작성자" date="2023-10-5" fav={true} />
-        <Posting title="안녕" writer="작성자" date="2023-10-6" fav={true} />
-        <Posting title="안녕" writer="작성자" date="2023-10-7" fav={true} />
-        <Posting title="안녕" writer="작성자" date="2023-10-8" fav={true} />
-        <Posting title="안녕" writer="작성자" date="2023-10-9" fav={true} />
-        <Posting title="안녕" writer="작성자" date="2023-10-10" fav={true} />
-        <Posting title="안녕" writer="작성자" date="2023-10-11" fav={true} />
-        <Posting title="안녕" writer="작성자" date="2023-10-12" fav={true} />
+      <RoundTap activeMaker={activeMaker} handleActiveRoute={handleActiveRoute} />
+      <div className={Styles.searchMarker}>
+        {activeMaker &&
+          userMarkerArr.map((marker, index) => (
+            <Posting
+              key={index}
+              title={marker.title}
+              writer={marker.writer}
+              date={marker.date}
+              fav={marker.fav}
+            />
+          ))}
+        {!activeMaker &&
+          userRouteArr.map((route, index) => (
+            <Posting
+              key={index}
+              title={route.title}
+              writer={route.writer}
+              date={route.date}
+              fav={route.fav}
+            />
+          ))}
       </div>
     </div>
   );
