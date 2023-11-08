@@ -1,30 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Styles from './SearchTap.module.css';
 import SearchInput from '../common/SearchInput';
 import RoundTap from '../common/RoundTap';
-
-import { AiFillStar } from 'react-icons/ai';
-import MakeBtn from '../common/MakeBtn';
-import MakeBtn2 from '../common/MakeBtn2';
+import Posting from '../userPosting/Posting';
 
 const SearchTap = () => {
+  const [activeMaker, setActiveMaker] = useState(true);
+
+  const handleActiveRoute = () => {
+    setActiveMaker(!activeMaker);
+  };
+
+  const userMarkerArr = [
+    { title: '수락산', writer: '작성자', date: '2023-10-1', fav: true },
+    { title: '도봉산', writer: '작성자', date: '2023-10-2', fav: true },
+  ];
+
+  const userRouteArr = [
+    { title: '제주도 여행', writer: '작성자', date: '2023-10-1', fav: true },
+    { title: '부산 여행', writer: '작성자', date: '2023-10-2', fav: true },
+  ];
+
   return (
     <div className={Styles.searchTap}>
       <SearchInput />
-      <RoundTap />
+      <RoundTap activeMaker={activeMaker} handleActiveRoute={handleActiveRoute} />
       <div className={Styles.searchMarker}>
-        <div className={Styles.searchMarkerInfo}>
-          <div className={Styles.title}>을지로 스타벅스</div>
-          <div className={Styles.writer}>동궁</div>
-          <div className={Styles.date}>2023.10.21</div>
-        </div>
-        <button className={Styles.fav}>
-          <AiFillStar />
-        </button>
+        {activeMaker &&
+          userMarkerArr.map((marker, index) => (
+            <Posting
+              key={index}
+              title={marker.title}
+              writer={marker.writer}
+              date={marker.date}
+              fav={marker.fav}
+            />
+          ))}
+        {!activeMaker &&
+          userRouteArr.map((route, index) => (
+            <Posting
+              key={index}
+              title={route.title}
+              writer={route.writer}
+              date={route.date}
+              fav={route.fav}
+            />
+          ))}
       </div>
-      <MakeBtn text="그룹 만들기" />
-      <MakeBtn2 text="수정 완료" />
-      <MakeBtn2 text="마커 생성" />
     </div>
   );
 };

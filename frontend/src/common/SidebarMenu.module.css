@@ -4,6 +4,7 @@
   border-right: var(--border-color) 1px solid;
   display: flex;
   flex-direction: column;
+  background-color: white;
 }
 
 .sidebarbtn {
@@ -22,7 +23,7 @@
 }
 
 /* react-icons에서 가져온 이미지 */
-svg {
+.sidebarMenu svg {
   fill: var(--main-color);
 }
 
@@ -31,14 +32,17 @@ svg {
   color: black;
 }
 
-.sidebarbtn:hover {
+.sidebarbtn:hover,
+.active {
   background-color: var(--main-color);
 }
 
-.sidebarbtn:hover svg {
+.sidebarbtn:hover svg,
+.active svg {
   fill: white;
 }
 
-.sidebarbtn:hover .btnName {
+.sidebarbtn:hover .btnName,
+.active .btnName {
   color: white;
 }
