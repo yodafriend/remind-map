@@ -23,7 +23,7 @@
 }
 
 /* react-icons에서 가져온 이미지 */
-svg {
+.sidebarMenu svg {
   fill: var(--main-color);
 }
 
