@@ -1,5 +1,5 @@
 import React from 'react';
-import MainMap from '../MainMap';
+import MainMap from './MainMap';
 
 const Main = () => {
   return (

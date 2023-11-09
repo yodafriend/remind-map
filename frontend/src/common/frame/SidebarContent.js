@@ -1,11 +1,11 @@
 import React from 'react';
 import Styles from './SidebarMenu.module.css';
-import SearchTap from '../TapPages/SearchTap';
-import RankTap from '../TapPages/RankTap';
-import FavTap from '../TapPages/FavTap';
-import GroupTap from '../TapPages/GroupTap';
-import MarkerTap from '../TapPages/MarkerTap';
-import RouteTap from '../TapPages/RouteTap';
+import SearchTap from '../../tap/search/SearchTap';
+import RankTap from '../../tap/rank/RankTap';
+import FavTap from '../../tap/fav/FavTap';
+import GroupTap from '../../tap/group/GroupTap';
+import MarkerTap from '../../tap/marker/MarkerTap';
+import RouteTap from '../../tap/route/RouteTap';
 
 const SidebarContent = ({ selectedTab }) => {
   return (
