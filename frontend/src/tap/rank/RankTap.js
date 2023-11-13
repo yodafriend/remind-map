@@ -1,6 +1,6 @@
 import React from 'react';
 import Styles from './RankTap.module.css';
-import RankSelect from '../common/RankSelect';
+import RankSelect from '../../common/select/RankSelect';
 
 const RankTap = () => {
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Styles from './FavTap.module.css';
-import RoundTap from '../common/RoundTap';
-import Posting from '../userPosting/Posting';
+import RoundTap from '../../common/btn/RoundTap';
+import Posting from '../../common/userposting/Posting';
 
 const FavTap = () => {
   const [activeMaker, setActiveMaker] = useState(true);
