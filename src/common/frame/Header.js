@@ -13,12 +13,12 @@ const Header = () => {
     window.location.href = link;
   };
 
-  const [login, setLogin] = useState(false);
+  const [islogined, setIsLogined] = useState(false);
 
   return (
     <header className={Styles.header}>
       <div className={Styles.title}>📌 RemindMap</div>
-      {login ? (
+      {islogined ? (
         <div className={Styles.userInfo}>
           <div className={Styles.userPhoto} />
           <div className={Styles.userName}>홍사미</div>

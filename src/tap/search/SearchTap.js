@@ -5,10 +5,10 @@ import RoundTap from '../../common/btn/RoundTap';
 import Posting from '../../common/userposting/Posting';
 
 const SearchTap = () => {
-  const [activeMaker, setActiveMaker] = useState(true);
+  const [isMakerActive, setIsActiveMaker] = useState(true);
 
   const handleActiveRoute = () => {
-    setActiveMaker(!activeMaker);
+    setIsActiveMaker(!isMakerActive);
   };
 
   const userMarkerArr = [
@@ -24,9 +24,9 @@ const SearchTap = () => {
   return (
     <div className={Styles.searchTap}>
       <SearchInput />
-      <RoundTap activeMaker={activeMaker} handleActiveRoute={handleActiveRoute} />
+      <RoundTap isMakerActive={isMakerActive} handleActiveRoute={handleActiveRoute} />
       <div className={Styles.searchMarker}>
-        {activeMaker &&
+        {isMakerActive &&
           userMarkerArr.map((marker, index) => (
             <Posting
               key={index}
@@ -36,7 +36,7 @@ const SearchTap = () => {
               fav={marker.fav}
             />
           ))}
-        {!activeMaker &&
+        {!isMakerActive &&
           userRouteArr.map((route, index) => (
             <Posting
               key={index}

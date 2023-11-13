@@ -4,10 +4,10 @@ import RoundTap from '../../common/btn/RoundTap';
 import Posting from '../../common/userposting/Posting';
 
 const FavTap = () => {
-  const [activeMaker, setActiveMaker] = useState(true);
+  const [isMakerActive, setIsActiveMaker] = useState(true);
 
   const handleActiveRoute = () => {
-    setActiveMaker(!activeMaker);
+    setIsActiveMaker(!isMakerActive);
   };
 
   const userMarkerArr = [
@@ -61,9 +61,9 @@ const FavTap = () => {
 
   return (
     <div className={Styles.favTap}>
-      <RoundTap activeMaker={activeMaker} handleActiveRoute={handleActiveRoute} />
+      <RoundTap isMakerActive={isMakerActive} handleActiveRoute={handleActiveRoute} />
       <div className={Styles.searchMarker}>
-        {activeMaker &&
+        {isMakerActive &&
           userMarkerArr.map((marker, index) => (
             <Posting
               key={index}
@@ -73,7 +73,7 @@ const FavTap = () => {
               fav={marker.fav}
             />
           ))}
-        {!activeMaker &&
+        {!isMakerActive &&
           userRouteArr.map((route, index) => (
             <Posting
               key={index}
