@@ -7,7 +7,7 @@ import GroupCreate from '../components/GroupCreate';
 export default function GroupHome() {
   return (
     <div>
-      <div className="flex">
+      <div className="flex mt-10">
         <GroupList />
         <div className="w-full flex items-centers justify-center">
           <GroupDetail />
