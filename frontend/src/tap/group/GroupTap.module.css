@@ -1,0 +1,16 @@
+.groupTap {
+  display: flex;
+  width: 260px;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+
+  padding: 20px 0px;
+  height: 100vh;
+  overflow-y: scroll;
+}
+.groupTapItem {
+  border-color: var(--main-color);
+  font-size: var(--text-sm);
+  width: 80%;
+}
