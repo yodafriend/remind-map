@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Styles from './Header.module.css';
 import { AiFillHome } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;

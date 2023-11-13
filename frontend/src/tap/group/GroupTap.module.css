@@ -4,6 +4,13 @@
   flex-direction: column;
   gap: 20px;
   align-items: center;
-  justify-content: center;
+
   padding: 20px 0px;
+  height: 100vh;
+  overflow-y: scroll;
+}
+.groupTapItem {
+  border-color: var(--main-color);
+  font-size: var(--text-sm);
+  width: 80%;
 }

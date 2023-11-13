@@ -5,6 +5,7 @@ import Header from './common/frame/Header';
 import Sidebar from './common/frame/Sidebar';
 import Redirect from './api/Redirect';
 import PostingModal from './common/userposting/PostingModal';
+import GroupHome from './tap/group/pages/GroupHome';
 
 function App() {
   return (
@@ -12,11 +13,12 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
+          <Route path="/" element={<Sidebar />} />
           <Route path="/" element={<Main />} />
+          <Route path="/group" element={<GroupHome />} />
           <Route exact path="/kakao/callback" element={<Redirect />} />
         </Routes>
         <PostingModal /> {/* 확인용 */}
-        <Sidebar />
       </div>
     </BrowserRouter>
   );
