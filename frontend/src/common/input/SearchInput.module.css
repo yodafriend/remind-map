@@ -4,9 +4,10 @@
 }
 
 .searchInput {
-  width: 80%;
+  width: 90%;
   height: 20px;
-  padding: 5px;
+  padding: 15px;
   border: var(--main-color) 1px solid;
   border-radius: 3px;
+  font-size: var(--text-sm);
 }

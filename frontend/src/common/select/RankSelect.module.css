@@ -4,9 +4,10 @@
 }
 
 .rankSelect {
-  width: 85%;
+  width: 90%;
   height: 30px;
   padding: 5px;
   border: var(--main-color) 1px solid;
   border-radius: 3px;
+  font-size: var(--text-sm);
 }
