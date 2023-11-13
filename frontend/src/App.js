@@ -13,8 +13,14 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/" element={<Sidebar />} />
-          <Route path="/" element={<Main />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <Main /> <Sidebar />
+              </>
+            }
+          />
           <Route path="/group" element={<GroupHome />} />
           <Route exact path="/kakao/callback" element={<Redirect />} />
         </Routes>
