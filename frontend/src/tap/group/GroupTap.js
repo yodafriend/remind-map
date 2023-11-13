@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import styles from './GroupTap.module.css';
-import MakeBtn from '../common/MakeBtn';
-import Datepicker from 'react-tailwindcss-datepicker';
-import { Link, useNavigate } from 'react-router-dom';
-import { groupMarkers, groups } from '../Group/datas';
-import Posting from '../userPosting/Posting';
 
+import Datepicker from 'react-tailwindcss-datepicker';
+import { groupMarkers, groups } from '../group/datas';
+import Posting from '../../common/userposting/Posting';
 const GroupTap = () => {
   const [curGroup, setCurGroup] = useState(0);
   const [curGroupId, setCurGroupId] = useState(0);
@@ -35,8 +33,6 @@ const GroupTap = () => {
 
   return (
     <div className={styles.groupTap}>
-      <MakeBtn text="그룹 관리" />
-
       <Datepicker
         inputClassName="w-full p-2"
         containerClassName={`${styles.groupTapItem} border rounded-sm`}

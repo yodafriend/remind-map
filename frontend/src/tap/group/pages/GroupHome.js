@@ -1,5 +1,4 @@
 import React from 'react';
-
 import GroupList from '../components/GroupList';
 import GroupDetail from '../components/GroupDetail';
 import GroupCreate from '../components/GroupCreate';
