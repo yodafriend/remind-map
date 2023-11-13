@@ -1,7 +1,7 @@
 import React from 'react';
 import GroupCard from './GroupCard';
 import Styles from './GroupList.module.css';
-import GroupButton from '../components/GroupButton';
+import GroupButton from './GroupButton';
 export default function GroupList() {
   const group = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1];
 
