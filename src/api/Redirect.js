@@ -6,19 +6,49 @@ const Redirect = () => {
   const code = new URL(document.location.toString()).searchParams.get('code');
   console.log(code);
   const navigate = useNavigate();
-  navigate('/');
 
-  /*
   useEffect(() => {
-    console.log(process.env.REACT_APP_URL);
-    axios.post(`http://localhost/kakao/kakaoLogin${code}`).then(r => {
-      console.log(r.data);
+    axios
+      .post(`http://localhost:8080/kakao/kakaoLogin/${code}`)
+      .then(response => {
+        console.log(response.data.memeberId);
+        console.log(response.data.nickname);
+        console.log(response.data.thumbnailImageUrl);
+        localStorage.setItem('Authorization', response.headers.authorization);
+        navigate('/');
+      })
+      .catch(error => console.error(error));
+  }, []);
 
-      localStorage.setItem('name', r.data.user_name);
+  const handleTestClick = () => {
+    const jwtToken = localStorage.getItem('Authorization');
+    if (jwtToken) {
+      axios
+        .post(
+          'http://localhost:8080/test',
+          {},
+          {
+            headers: {
+              Authorization: jwtToken, // JWT 토큰을 헤더에 추가
+            },
+          },
+        )
+        .then(response => {
+          if (response.status === 200) {
+            console.log('성공');
+          } else {
+            console.log('401 원인: ', response.data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    } else {
+      console.log('No JWT token found');
+    }
+  };
 
-      navigate('/');
-    });
-  }, []);*/
+  return <button onClick={handleTestClick}>테스트</button>;
 };
 
 export default Redirect;
