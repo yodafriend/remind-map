@@ -1,20 +1,47 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+
+import { UserId } from '../store/UserId';
+import { UserNickname } from '../store/UserNickname';
+import { UserProfile } from '../store/UserProfile';
 
 const Redirect = () => {
   const code = new URL(document.location.toString()).searchParams.get('code');
   console.log(code);
   const navigate = useNavigate();
 
+  const [userId, setUserId] = useRecoilState(UserId);
+  const [userNickname, setUserNickname] = useRecoilState(UserNickname);
+  const [userProfile, setUserProfile] = useRecoilState(UserProfile);
+
   useEffect(() => {
-    axios
+    const jwtToken = localStorage.getItem('Authorization');
+    const axiosInstance = axios.create();
+    console.log(jwtToken);
+
+    // 응답 인터셉터 설정
+    axiosInstance.interceptors.response.use(
+      response => {
+        return response;
+      },
+      error => {
+        if (error.response.status === 401) {
+          console.log('401 Unauthorized:', error.response.data.message);
+          navigate('/logout');
+        }
+        return Promise.reject(error);
+      },
+    );
+
+    axiosInstance
       .post(`http://localhost:8080/kakao/kakaoLogin/${code}`)
       .then(response => {
-        console.log(response.data.memeberId);
-        console.log(response.data.nickname);
-        console.log(response.data.thumbnailImageUrl);
         localStorage.setItem('Authorization', response.headers.authorization);
+        setUserId(response.data.memberId);
+        setUserNickname(response.data.nickname);
+        setUserProfile(response.data.thumbnailImageUrl);
         navigate('/');
       })
       .catch(error => console.error(error));
@@ -22,6 +49,7 @@ const Redirect = () => {
 
   const handleTestClick = () => {
     const jwtToken = localStorage.getItem('Authorization');
+
     if (jwtToken) {
       axios
         .post(
@@ -29,7 +57,7 @@ const Redirect = () => {
           {},
           {
             headers: {
-              Authorization: jwtToken, // JWT 토큰을 헤더에 추가
+              Authorization: jwtToken,
             },
           },
         )
@@ -48,7 +76,11 @@ const Redirect = () => {
     }
   };
 
-  return <button onClick={handleTestClick}>테스트</button>;
+  return (
+    <button style={{ zIndex: '800', width: '200px', height: '200px' }} onClick={handleTestClick}>
+      버튼
+    </button>
+  );
 };
 
 export default Redirect;
