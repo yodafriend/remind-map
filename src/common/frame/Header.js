@@ -17,7 +17,9 @@ const Header = () => {
 
   return (
     <header className={Styles.header}>
-      <div className={Styles.title}>📌 RemindMap</div>
+      <Link to="/" className={Styles.title}>
+        📌 RemindMap
+      </Link>
       {islogined ? (
         <div className={Styles.userInfo}>
           <div className={Styles.userPhoto} />
