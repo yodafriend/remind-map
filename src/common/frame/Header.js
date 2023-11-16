@@ -6,18 +6,18 @@ const Header = () => {
   const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
   const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
 
-  const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code&prompt=login`;
+  const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code&prompt=login&scope=friends`;
 
   const handleLogin = () => {
     window.location.href = link;
   };
 
-  const [login, setLogin] = useState(false);
+  const [islogined, setIsLogin] = useState(false);
 
   return (
     <header className={Styles.header}>
       <div className={Styles.title}>📌 RemindMap</div>
-      {login ? (
+      {islogined ? (
         <div className={Styles.userInfo}>
           <div className={Styles.userPhoto} />
           <div className={Styles.userName}>홍사미</div>
