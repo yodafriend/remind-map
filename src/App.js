@@ -1,13 +1,19 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './common/frame/Main';
 import Header from './common/frame/Header';
 import Sidebar from './common/frame/Sidebar';
 import Redirect from './api/Redirect';
-import PostingModal from './common/userposting/PostingModal';
 import GroupHome from './tap/group/pages/GroupHome';
+import { useEffect } from 'react';
+import useGroup from './hooks/useGroup';
 
 function App() {
+  const { getGroups } = useGroup();
+
+  useEffect(() => {
+    getGroups();
+  }, []);
   return (
     <BrowserRouter>
       <div className="App">
@@ -21,10 +27,9 @@ function App() {
               </>
             }
           />
-          <Route path="/group" element={<GroupHome />} />
+          <Route path="/group/:type?/:groupId?" element={<GroupHome />} />
           <Route exact path="/kakao/callback" element={<Redirect />} />
         </Routes>
-        <PostingModal /> {/* 확인용 */}
       </div>
     </BrowserRouter>
   );
