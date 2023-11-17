@@ -42,6 +42,7 @@ const Redirect = () => {
         setUserId(response.data.memberId);
         setUserNickname(response.data.nickname);
         setUserProfile(response.data.thumbnailImageUrl);
+        console.log(userId, userNickname, userProfile);
         navigate('/');
       })
       .catch(error => console.error(error));

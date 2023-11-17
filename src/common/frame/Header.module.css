@@ -16,6 +16,7 @@ header .title {
   color: var(--main-color);
   font-size: var(--text-lg);
   padding-left: 15px;
+  cursor: pointer;
 }
 
 header .userInfo {
