@@ -77,7 +77,19 @@ const SearchTap = ({ onSearchResults }) => {
       </form>
       <RoundTap isMakerActive={isMakerActive} handleActiveRoute={handleActiveRoute} />
       <div className={Styles.searchMarker}>
-        {isMakerActive &&
+        {savedSearchResults.map((result, index) => (
+          <li style={{ width: '100%' }} onClick={() => console.log(index)} key={index}>
+            <strong>{result.place_name}</strong>
+            <p>주소: {result.road_address_name || result.address_name}</p>
+            <p>전화번호: {result.phone}</p>
+          </li>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+/* {isMakerActive &&
           userMarkerArr.map((marker, index) => (
             <Posting
               key={index}
@@ -96,10 +108,6 @@ const SearchTap = ({ onSearchResults }) => {
               wentDate={route.wentDate}
               fav={route.fav}
             />
-          ))}
-      </div>
-    </div>
-  );
-};
+          ))} */
 
 export default SearchTap;
