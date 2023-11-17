@@ -1,6 +1,7 @@
 import { rest } from 'msw';
 import { groups } from './groups';
 import { groupMembers } from './groupMembers';
+import { friends } from './friends';
 
 const groupIdCreate = groupId => {
   return groupId + 1;
@@ -49,5 +50,10 @@ export const handlers = [
       }
     });
     return res(ctx.status(200), ctx.json(arr));
+  }),
+  rest.get('/friends', (req, res, ctx) => {
+    console.log(req.body);
+
+    return res(ctx.status(200), ctx.json(friends));
   }),
 ];
