@@ -7,7 +7,7 @@ const MainMap = ({ searchResults }) => {
     const mapContainer = document.getElementById('map');
     const mapOption = {
       center: new window.kakao.maps.LatLng(37.566826, 126.9786567),
-      level: 7,
+      level: 3,
     };
     const createdMap = new window.kakao.maps.Map(mapContainer, mapOption);
     setMap(createdMap);
