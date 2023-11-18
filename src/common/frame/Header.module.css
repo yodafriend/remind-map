@@ -25,6 +25,8 @@ header .userInfo {
   align-items: center;
   gap: 10px;
   padding-right: 15px;
+  position: relative;
+  cursor: pointer;
 }
 
 header .userInfo .userPhoto {
@@ -44,5 +46,16 @@ header .userInfo .home {
   border: none;
   background-color: transparent;
   padding-right: 15px;
+  cursor: pointer;
+}
+
+.dropdown {
+  background-color: white;
+  position: absolute;
+  top: 110%;
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid var(--border-color);
   cursor: pointer;
 }
