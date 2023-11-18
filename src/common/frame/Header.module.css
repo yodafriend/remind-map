@@ -34,12 +34,7 @@ header .userInfo .userPhoto {
   border-radius: 20px;
   width: 30px;
   height: 30px;
-}
-
-header .userInfo .home {
-  width: 20px;
-  height: 20px;
-  fill: var(--main-color);
+  border: 1px solid var(--main-color);
 }
 
 .loginBtn {
