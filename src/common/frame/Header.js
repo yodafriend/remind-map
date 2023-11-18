@@ -6,6 +6,7 @@ import { UserLogin } from '../../store/UserLogin';
 import { UserProfile } from '../../store/UserProfile';
 import { UserNickname } from '../../store/UserNickname';
 import axios from 'axios';
+import { instance } from '../../api/customAxios';
 
 const Header = () => {
   const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
@@ -34,8 +35,8 @@ const Header = () => {
 
   useEffect(() => {
     const jwtToken = localStorage.getItem('Authorization');
-    axios
-      .post('https://localhost:8080/login-check', {
+    instance
+      .post('/login-check', {
         headers: {
           Authorization: `${jwtToken}`,
         },
@@ -55,7 +56,6 @@ const Header = () => {
         <div className={Styles.userInfo} onClick={toggleDropdown}>
           <img className={Styles.userPhoto} src={profileImg} alt="유저 프로필" />
           <div className={Styles.userName}>{nickname}</div>
-          <AiFillHome className={Styles.home} />
           {isDropdownVisible && (
             <div className={Styles.dropdown}>
               <button onClick={handleLogout}>로그아웃</button>
