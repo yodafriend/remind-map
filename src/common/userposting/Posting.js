@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Styles from './Posting.module.css';
 import { AiFillStar } from 'react-icons/ai';
 
-const Posting = ({ title, writer, wentDate, fav, latitude, longitude }) => {
+const Posting = ({ title, nickName, wentDate, fav, latitude, longitude }) => {
   const [onFav, setOnFav] = useState(fav);
 
   const handleFav = () => {
@@ -13,7 +13,7 @@ const Posting = ({ title, writer, wentDate, fav, latitude, longitude }) => {
     <div className={Styles.posting}>
       <div className={Styles.postingInfo}>
         <div className={Styles.title}>{title}</div>
-        <div className={Styles.writer}>{writer}</div>
+        <div className={Styles.nickName}>{nickName}</div>
         <div className={Styles.wentDate}>{wentDate}</div>
         <div className={Styles.latitude}>{latitude}</div>
         <div className={Styles.longitude}>{longitude}</div>
