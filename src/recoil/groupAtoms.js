@@ -12,5 +12,9 @@ const seletGroupIndexState = atom({
   key: 'seletGroupsIndexState',
   default: 0,
 });
+export const seletGroupIdState = atom({
+  key: 'seletGroupIdState',
+  default: 0,
+});
 
 export { groupState, groupsState, seletGroupIndexState };
