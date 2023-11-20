@@ -1,9 +1,9 @@
 import { useMatch } from 'react-router-dom';
 
-import GroupList from '../components/ui-components/GroupList';
-import GroupDetail from '../components/ui-components/GroupDetail';
-import GroupCreate from '../components/ui-components/GroupCreate';
-import GroupFriends from '../components/ui-components/GroupFriends';
+import GroupList from './components/ui-components/GroupList';
+import GroupDetail from './components/ui-components/GroupDetail';
+import GroupCreate from './components/ui-components/GroupCreate';
+import GroupFriends from './components/ui-components/GroupFriends';
 
 export default function GroupHome() {
   const create = useMatch('/group/create');
