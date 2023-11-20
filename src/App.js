@@ -4,7 +4,7 @@ import Main from './common/frame/Main';
 import Header from './common/frame/Header';
 import Sidebar from './common/frame/Sidebar';
 import Redirect from './api/Redirect';
-import GroupHome from './tap/group/pages/GroupHome';
+import GroupHome from './tap/group/GroupHome';
 import { useEffect } from 'react';
 import useGroup from './hooks/useGroup';
 
@@ -20,7 +20,7 @@ function App() {
         <Header />
         <Routes>
           <Route
-            path="/"
+            path="/:tab_name?/:type?/:groupId?"
             element={
               <>
                 <Main /> <Sidebar />
