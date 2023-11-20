@@ -1,10 +1,16 @@
 import { atom } from 'recoil';
 
-export const groupsState = atom({
+const groupsState = atom({
   key: 'groupsState',
   default: [],
 });
-export const seletGroupIndexState = atom({
+const groupState = atom({
+  key: 'groupState',
+  default: {},
+});
+const seletGroupIndexState = atom({
   key: 'seletGroupsIndexState',
   default: 0,
 });
+
+export { groupState, groupsState, seletGroupIndexState };
