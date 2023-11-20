@@ -2,18 +2,25 @@ import React, { useState } from 'react';
 import GroupInput from '../atom-components/GroupInput';
 import axios from 'axios';
 import useGroup from '../../../../hooks/useGroup';
-import { useNavigate } from 'react-router-dom';
+import { useMatch, useNavigate } from 'react-router-dom';
 
 export default function GroupCreate() {
   const [groupTitle, setGroupTitle] = useState('');
   const { getGroups } = useGroup();
-  const navigetor = useNavigate();
+  const navigate = useNavigate();
+  const isTabCreate = useMatch('/grouptab/create/:id');
+  const isCreate = useMatch('/group/create/:id');
 
   const createGroup = async () => {
     try {
       const result = await axios.post('/group/create', { groupTitle: groupTitle });
       getGroups();
-      navigetor(`/group/detail/${result.data.groupId}`);
+      if (isTabCreate) {
+        navigate(`/grouptab/all/${result.data.groupId}`);
+      }
+      if (isCreate) {
+        navigate(`/group/detail/${result.data.groupId}`);
+      }
     } catch (error) {
       console.log(error);
     }
