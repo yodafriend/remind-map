@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Styles from './Header.module.css';
 import { AiFillHome } from 'react-icons/ai';
+import { HiUserGroup } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
@@ -25,6 +26,9 @@ const Header = () => {
           <div className={Styles.userPhoto} />
           <div className={Styles.userName}>홍사미</div>
           <AiFillHome className={Styles.home} />
+          <Link to="/group">
+            <HiUserGroup className={Styles.home} />
+          </Link>
         </div>
       ) : (
         <button className={Styles.loginBtn} onClick={handleLogin}>
