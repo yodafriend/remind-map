@@ -27,8 +27,10 @@ const useGroup = (groupId, groupTitle) => {
   };
   const getGroupmembers = async () => {
     try {
+      console.log(groupId);
       const result = await axios.get(`/group/member/get/${groupId}`);
       setGroupMembers(result.data);
+      console.log(result.data);
     } catch (error) {
       console.log(error);
     }
