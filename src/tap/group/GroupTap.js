@@ -2,28 +2,33 @@ import React, { useState } from 'react';
 import styles from './GroupTap.module.css';
 
 import Datepicker from 'react-tailwindcss-datepicker';
-import { groupMarkers, groups } from '../group/datas';
+import { groupMarkers } from '../group/datas';
 import Posting from '../../common/userposting/Posting';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { groupsState } from '../../recoil/groupAtoms';
+import { Link } from 'react-router-dom';
+import { seletGroupIndexState } from '../../recoil/groupAtoms';
+
 const GroupTap = () => {
-  const [curGroup, setCurGroup] = useState(0);
+  const [seletGroupIndex, setSeletGroupIndex] = useRecoilState(seletGroupIndexState);
+  const groups = useRecoilValue(groupsState);
+
   const [curGroupId, setCurGroupId] = useState(0);
   const [isGroups, setIsGroups] = useState(false);
+
   const [value, setValue] = useState({
     startDate: new Date(),
     endDate: new Date().setMonth(11),
   });
-
   const handleValueChange = newValue => {
-    console.log('newValue:', newValue);
     setValue(newValue);
   };
   const seletGroup = groupId => {
-    const seletIndex = groups.findIndex(el => {
+    const groupIndex = groups.findIndex(el => {
       return el.groupId === groupId;
     });
-    setCurGroup(seletIndex);
     setCurGroupId(groupId);
-    console.log(curGroup);
+    setSeletGroupIndex(groupIndex);
     setIsGroups(false);
   };
 
@@ -33,6 +38,9 @@ const GroupTap = () => {
 
   return (
     <div className={styles.groupTap}>
+      <Link to="/group" className={`${styles.groupTapItem} border p-2 text-center`}>
+        그룹관리
+      </Link>
       <Datepicker
         inputClassName="w-full p-2"
         containerClassName={`${styles.groupTapItem} border rounded-sm`}
@@ -44,28 +52,8 @@ const GroupTap = () => {
         placeholder="YYYY-MM-DD"
       />
       <div className="w-full flex flex-col items-center justify-center">
-        {/* <select className={`${styles.groupTapItem} flex items-center justify-center border p-2`}>
-          {groups.map((group, i) => {
-            return (
-              <option
-                onClick={() => {
-                  seletGroup(group.groupId);
-                }}
-                key={group.groupId}
-              >
-                {group.groupTitle}
-              </option>
-            );
-          })}
-        </select> */}
-        {/* <ul className={`${styles.groupTapItem} border`}>
-          {groups.map((group, i) => {
-            return curGroup === i ? <li className="p-2">{group.groupTitle}</li> : null;
-          })}
-        </ul> */}
-
         <p onClick={openGroup} className={`${styles.groupTapItem} border p-2`}>
-          {groups[curGroup].groupTitle}
+          {groups[seletGroupIndex].groupTitle}
         </p>
         {isGroups ? (
           <ul className={`${styles.groupTapItem} border`}>
@@ -85,7 +73,7 @@ const GroupTap = () => {
           </ul>
         ) : null}
       </div>
-      <div className="w-full flex flex-col gap-3 items-center justify-center">
+      <div className="w-full flex flex-col items-center justify-center gap-3">
         {groupMarkers.map((marker, i) => {
           return curGroupId === marker.groupId ? (
             <Posting
