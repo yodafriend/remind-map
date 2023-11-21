@@ -1,13 +1,15 @@
 import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
-import { groupState, groupsState } from '../recoil/groupAtoms';
+import { groupState, groupsState, seletGroupIdState } from '../recoil/groupAtoms';
 import { useState } from 'react';
 
 const useGroup = (groupId, groupTitle) => {
   const setGroups = useSetRecoilState(groupsState);
   const setGroup = useSetRecoilState(groupState);
+  const seletGroupId = useSetRecoilState(seletGroupIdState);
   const [newGroupId, setNewGroupId] = useState(0);
   const [groupMembers, setGroupMembers] = useState([]);
+  const firstSeletGroupId = () => {};
   const getGroups = async () => {
     try {
       const result = await axios.get('/group/getall');

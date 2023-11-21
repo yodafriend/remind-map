@@ -29,7 +29,6 @@
 @keyframes slideIn {
   from {
     transform: translateX(-260px);
-    opacity: 0;
     display: none;
   }
   to {
@@ -45,7 +44,7 @@
   }
   to {
     transform: translateX(-260px);
-    opacity: 0;
+
     display: none;
   }
 }
