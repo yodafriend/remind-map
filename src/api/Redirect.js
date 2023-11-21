@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import axios from 'axios';
-import { instance } from './customAxios';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { UserLogin } from '../store/UserLogin';
 import { UserProfile } from '../store/UserProfile';
 import { UserNickname } from '../store/UserNickname';
 import { UserId } from '../store/UserId';
+import { instance } from './customAxios';
 
 const Redirect = () => {
   const code = new URL(document.location.toString()).searchParams.get('code');
@@ -18,17 +18,24 @@ const Redirect = () => {
   const [userProfile, setUserProfile] = useRecoilState(UserProfile);
 
   useEffect(() => {
-    instance
-      .post(`/kakao/kakaoLogin/${code}`)
-      .then(response => {
-        localStorage.setItem('Authorization', response.headers.authorization);
-        setUserId(response.data.memberId);
-        setUserNickname(response.data.nickname);
-        setUserProfile(response.data.thumbnailImageUrl);
-        navigate('/');
-        setIsLogined(true);
-      })
-      .catch(error => console.error(error));
+    const existingToken = localStorage.getItem('Authorization');
+
+    if (existingToken) {
+      setIsLogined(true);
+      navigate('/');
+    } else {
+      instance
+        .post(`/kakao/kakaoLogin/${code}`)
+        .then(response => {
+          localStorage.setItem('Authorization', response.headers.authorization);
+          setUserId(response.data.memberId);
+          setUserNickname(response.data.nickname);
+          setUserProfile(response.data.thumbnailImageUrl);
+          navigate('/');
+          setIsLogined(true);
+        })
+        .catch(error => console.log(code));
+    }
   }, []);
 };
 

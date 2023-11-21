@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: 'https://o5vsijczw6.execute-api.ap-northeast-2.amazonaws.com',
 });
 
 instance.interceptors.request.use(
@@ -24,7 +24,7 @@ instance.interceptors.response.use(
   error => {
     const originalRequest = error.config;
 
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (error.response === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       return getNewToken()
         .then(newToken => {
