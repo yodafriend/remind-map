@@ -7,6 +7,7 @@ import Sidebar from './common/frame/Sidebar';
 import Redirect from './api/Redirect';
 import PostingModal from './common/userposting/PostingModal';
 import GroupHome from './tap/group/pages/GroupHome';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);

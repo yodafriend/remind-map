@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import Redirect from '../../api/Redirect';
+
 const { kakao } = window;
 
 const MainMap = ({ searchResults }) => {
@@ -30,7 +32,7 @@ const MainMap = ({ searchResults }) => {
   }, [searchResults, map]);
 
   return (
-    <div>
+    <div style={{ display: 'flex' }}>
       <div
         id="map"
         style={{
@@ -41,6 +43,7 @@ const MainMap = ({ searchResults }) => {
           height: '100vh',
         }}
       />
+      <Redirect />
     </div>
   );
 };
