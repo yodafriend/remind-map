@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { RecoilRoot } from 'recoil';
 
 import { worker } from './mooks/worker';
-import { RecoilRoot } from 'recoil';
 
 if (process.env.NODE_ENV === 'development') {
   worker.start({
