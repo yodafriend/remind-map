@@ -143,6 +143,7 @@ const GroupTap = () => {
           })}
         </div>
       </div>
+
       {a && (
         <div
           className={`${styles.groupDetailTap} fixed h-screen overflow-y-scroll left-20 p-3 ${
