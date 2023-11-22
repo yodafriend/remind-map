@@ -29,7 +29,7 @@ function App() {
               path="/:tab_name?/:type?/:groupId?"
               element={
                 <>
-                  <Main searchResults={searchResults} onMarkerSelect={setSelectedMarker} />
+                  {/* <Main searchResults={searchResults} onMarkerSelect={setSelectedMarker} /> */}
                   <Sidebar onSearchResults={setSearchResults} selectedMarker={selectedMarker} />
                 </>
               }
