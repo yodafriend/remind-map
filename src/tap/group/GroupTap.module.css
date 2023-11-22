@@ -13,9 +13,9 @@
   border-color: var(--main-color);
   font-size: var(--text-sm);
   width: 80%;
+  transition: 0.5s all;
 }
 .groupDetailTap {
-  opacity: 0;
   height: calc(100vh - 40px);
   top: 40px;
   left: 320px;
@@ -26,53 +26,27 @@
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
   transition: all 1s ease;
 }
-
-@keyframes slideIn {
-  from {
-    transform: translateX(-260px);
-    display: none;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+.listOpen {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
 }
-
-@keyframes slideOut {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(-260px);
-
-    display: none;
-  }
+.listClose {
+  transform: translateY(-30%);
+  opacity: 0;
+  pointer-events: none;
 }
-
 .close {
   opacity: 0;
-  animation: slideOut 1s ease both;
+  transform: translateX(-260px);
+  pointer-events: none;
 }
-
 .open {
-  animation: slideIn 1s ease both;
+  opacity: 1;
+  transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
 }
-
-@keyframes moveAround {
-  0% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(100px, 100px);
-  }
-  50% {
-    transform: translate(200px, 0);
-  }
-  75% {
-    transform: translate(100px, -100px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
+.trans {
+  transition: 2s opacity;
 }
