@@ -15,22 +15,24 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="App">
-        <Header />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Main searchResults={searchResults} onMarkerSelect={setSelectedMarker} />
-                <Sidebar onSearchResults={setSearchResults} selectedMarker={selectedMarker} />
-              </>
-            }
-          />
-          <Route exact path="/kakao/callback" element={<Redirect />} />
-        </Routes>
-        {/*<PostingModal />*/}
-      </div>
+      <RecoilRoot>
+        <div className="App">
+          <Header />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Main searchResults={searchResults} onMarkerSelect={setSelectedMarker} />
+                  <Sidebar onSearchResults={setSearchResults} selectedMarker={selectedMarker} />
+                </>
+              }
+            />
+            <Route exact path="/kakao/callback" element={<Redirect />} />
+          </Routes>
+          {/*<PostingModal />*/}
+        </div>
+      </RecoilRoot>
     </BrowserRouter>
   );
 }
