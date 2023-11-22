@@ -24,17 +24,19 @@ const Redirect = () => {
       setIsLogined(true);
       navigate('/');
     } else {
-      instance
-        .post(`/kakao/kakaoLogin/${code}`)
-        .then(response => {
-          localStorage.setItem('Authorization', response.headers.authorization);
-          setUserId(response.data.memberId);
-          setUserNickname(response.data.nickname);
-          setUserProfile(response.data.thumbnailImageUrl);
-          navigate('/');
-          setIsLogined(true);
-        })
-        .catch(error => console.error);
+      if (code) {
+        instance
+          .post(`/kakao/kakaoLogin/${code}`)
+          .then(response => {
+            localStorage.setItem('Authorization', response.headers.authorization);
+            setUserId(response.data.memberId);
+            setUserNickname(response.data.nickname);
+            setUserProfile(response.data.thumbnailImageUrl);
+            navigate('/');
+            setIsLogined(true);
+          })
+          .catch(error => console.error);
+      }
     }
   }, []);
 };
