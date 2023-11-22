@@ -30,8 +30,11 @@ export default function Seleter() {
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center relative">
-      <p onClick={openGroup} className={`${styles.groupTapItem} border p-2`}>
+    <div className="w-full flex flex-col items-center justify-center relative z-50">
+      <p
+        onClick={openGroup}
+        className={`${styles.groupTapItem} border p-2 hover:bg-main-color hover:text-white`}
+      >
         {group.groupTitle}
       </p>
       <ul
@@ -46,7 +49,7 @@ export default function Seleter() {
                 seletGroup(group.groupId);
               }}
               key={i}
-              className="p-2 border border-b"
+              className="p-2 border border-b hover:bg-main-color hover:text-white transition-all"
             >
               {group.groupTitle}
             </li>

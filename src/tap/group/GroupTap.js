@@ -19,25 +19,43 @@ const GroupTap = () => {
   const detail = useMatch('/grouptab/all/:id');
   const navigator = useNavigate();
   const { groupId } = useParams();
-  const { getGroups, getGroup, getGroupmembers, groupMembers } = useGroup(groupId);
+  const { getGroups, getGroup, getGroupmembers } = useGroup(groupId);
   const [isDetailGroup, setIsDetailGroup] = useState(false);
-  const ref = useRef();
+  const ref = useRef(null);
   useEffect(() => {
-    ref.current.classList.add('opacity-0');
-    setTimeout(() => {
-      ref.current.classList.remove('opacity-0');
-    }, 200);
+    // ref.current가 null이 아닌 경우에만 observe 호출
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        setTimeout(() => {
+          if (entry.intersectionRatio) {
+            entry.target.classList.remove('opacity-0');
+            entry.target.classList.add('opacity-100');
+            console.log('on!');
+          }
+          if (!entry.intersectionRatio) {
+            entry.target.classList.remove('opacity-100');
+            entry.target.classList.add('opacity-0');
+            console.log('off!');
+          }
+        }, 200);
+      });
+    });
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    // 컴포넌트가 언마운트될 때 정리(clean-up)를 위한 함수
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
   }, [ref]);
 
   useEffect(() => {
     getGroups();
     getGroup();
     getGroupmembers();
-    // console.log('ref:', ref.current.className + ' gap-5');
-    // ref.current.className = ref.current.className + ' opacity-0';
-    // ref.current.className.replace(' opacity-0', ' opacity-1');
-    console.log('groupId : ', groupId);
-    console.log('members : ', groupMembers);
   }, [groupId]);
 
   const onCreateTab = () => {
@@ -65,14 +83,13 @@ const GroupTap = () => {
 
   return (
     <div>
-      <div className={styles.groupTap}>
+      <div ref={ref} className={`${styles.trans} ${styles.groupTap} opacity-0`}>
         <GroupButton onClick={onCreateTab} text="그룹관리" type="Button" size="w90" />
         <GroupButton onClick={onDetailTab} text="그룹 만들기" type="Button" size="w90" />
         <DatePicker />
         <Seleter />
         <div
-          ref={ref}
-          className={`${styles.trans} opacity-0 w-full flex flex-col items-center justify-center gap-3 transition-all`}
+          className={`${styles.trans} w-full flex flex-col items-center justify-center gap-3 transition-all`}
         >
           {groupMarkers.map((marker, i) => {
             return (
@@ -91,7 +108,9 @@ const GroupTap = () => {
       </div>
 
       <div
-        className={`${styles.groupDetailTap} fixed h-screen overflow-y-scroll left-20 p-3 ${
+        className={`${
+          styles.groupDetailTap
+        } opacity-0 fixed h-screen overflow-y-scroll left-20 p-3 ${
           isDetailGroup ? styles.open : styles.close
         } `}
       >

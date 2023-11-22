@@ -48,5 +48,5 @@
   pointer-events: auto;
 }
 .trans {
-  transition: 2s opacity;
+  transition: 1s opacity;
 }
