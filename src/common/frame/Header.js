@@ -7,7 +7,6 @@ import { UserId } from '../../store/UserId';
 import { UserLogin } from '../../store/UserLogin';
 import { UserProfile } from '../../store/UserProfile';
 import { UserNickname } from '../../store/UserNickname';
-import axios from 'axios';
 import { instance } from '../../api/customAxios';
 import { Link } from 'react-router-dom';
 
@@ -41,13 +40,8 @@ const Header = () => {
   const nickname = useRecoilValue(UserNickname);
 
   useEffect(() => {
-    const jwtToken = localStorage.getItem('Authorization');
     instance
-      .post('/login-check', {
-        headers: {
-          Authorization: `${jwtToken}`,
-        },
-      })
+      .post('/login-check')
       .then(response => {
         console.log(response);
         setUserId(response.data.memberId);
