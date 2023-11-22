@@ -3,6 +3,7 @@ import Styles from './SearchTap.module.css';
 import SearchInput from '../../common/input/SearchInput';
 import RoundTap from '../../common/btn/RoundTap';
 import Posting from '../../common/userposting/Posting';
+import { instance } from '../../api/customAxios';
 import axios from 'axios';
 
 const SearchTap = ({ onSearchResults }) => {
@@ -84,26 +85,16 @@ const SearchTap = ({ onSearchResults }) => {
     setIsClick(!isclick);
     setPlace('');
 
-    const jwtToken = localStorage.getItem('Authorization');
-
     if (!isclick && isMakerActive) {
-      axios
-        .get(`https://localhost:3000/markers?latitude=${x}&longitude=${y}`, {
-          headers: {
-            Authorization: { jwtToken },
-          },
-        })
+      instance
+        .get(`/markers?latitude=${x}&longitude=${y}`)
         .then(response => {
           userMarkerArr(response.data);
         })
         .catch(console.error());
     } else if (!isclick && !isMakerActive) {
-      axios
-        .get(`https://localhost:3000/markers?latitude=${x}&longitude=${y}`, {
-          headers: {
-            Authorization: { jwtToken },
-          },
-        })
+      instance
+        .get(`/markers?latitude=${x}&longitude=${y}`)
         .then(response => {
           userRouteArr(response.data);
         })
