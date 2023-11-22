@@ -34,7 +34,7 @@ const Redirect = () => {
           navigate('/');
           setIsLogined(true);
         })
-        .catch(error => console.log(code));
+        .catch(error => console.error);
     }
   }, []);
 };
