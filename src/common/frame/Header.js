@@ -33,6 +33,10 @@ const Header = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('Authorization');
+    /*instance
+      .post('/logout')
+      .then(response => console.log(response))
+      .catch(e => console.error());*/
     setIsLogined(false);
   };
 
@@ -50,9 +54,9 @@ const Header = () => {
         setIsLogined(true);
       })
       .catch(e => {
-        console.log('못 쓰는 토큰');
+        console.log('토큰이 유효하지 않습니다.');
       });
-  }, [setIsLogined]);
+  }, [setIsLogined, setUserId, setUserNickname, setUserProfile]);
 
   return (
     <header className={Styles.header}>

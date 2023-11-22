@@ -4,6 +4,9 @@ export const instance = axios.create({
   baseURL: 'https://o5vsijczw6.execute-api.ap-northeast-2.amazonaws.com',
 });
 
+// Closure to keep track of retry status
+let isRetrying = false;
+
 instance.interceptors.request.use(
   config => {
     const JWTtoken = localStorage.getItem('Authorization');
@@ -24,18 +27,24 @@ instance.interceptors.response.use(
   error => {
     const originalRequest = error.config;
 
-    if (error.response === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
+    if (error.response && error.response.status === 401 && !isRetrying) {
+      isRetrying = true;
+
       return getNewToken()
         .then(newToken => {
+          isRetrying = false;
+
           instance.defaults.headers.common.Authorization = `Bearer ${newToken}`;
           originalRequest.headers.Authorization = `Bearer ${newToken}`;
 
           return instance(originalRequest);
         })
-        .catch(error => {
-          console.log('리프레시 토큰 만료!');
-          return Promise.reject(error);
+        .catch(refreshError => {
+          isRetrying = false;
+          localStorage.removeItem('Authorization');
+          console.log('리프레시 토큰 갱신 오류:', refreshError);
+
+          return Promise.reject(refreshError);
         });
     }
     return Promise.reject(error);
@@ -44,15 +53,18 @@ instance.interceptors.response.use(
 
 function getNewToken() {
   return instance
-    .post('/login-check/refresh-token', {
-      withCredentials: true,
-    })
+    .post('/login-check/refresh-token', { withCredentials: true })
     .then(response => {
       if (response.status === 200) {
         localStorage.setItem('Authorization', response.headers.authorization);
         return response.data;
       } else {
-        console.log('실패');
+        console.log('엑세스 토큰 갱신에 실패했습니다.');
+        return Promise.reject('엑세스 토큰 갱신 실패');
       }
+    })
+    .catch(error => {
+      alert('로그인을 다시 해주세요.');
+      return Promise.reject(error);
     });
 }
