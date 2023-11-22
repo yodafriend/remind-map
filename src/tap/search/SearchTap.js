@@ -119,9 +119,9 @@ const SearchTap = ({ onSearchResults }) => {
           <div className={Styles.posting}>
             <RoundTap isMakerActive={isMakerActive} handleActiveRoute={handleActiveRoute} />
             {isMakerActive &&
-              userMarkerArr.map((marker, index) => (
+              userMarkerArr.map(marker => (
                 <Posting
-                  key={index}
+                  key={marker.id}
                   title={marker.title}
                   nickName={marker.nickName}
                   wentDate={marker.wentDate.slice(0, 10)}
