@@ -22,9 +22,8 @@ const RankTap = () => {
     const boardType = isMarkerActive === true ? 'marker' : 'route';
     const value = selectedValue;
 
-    console.log(`setUser${boardType}`);
     if (value === '실시간 조회수 TOP 10') {
-      instance.get(`/rank/onair/${boardType}`, { count: 10 }).then(response => {
+      instance.get(`/rank?boardType=${boardType}&count=10`).then(response => {
         if (response.status === 200) {
           `setUser${boardType}`(response.data);
         }
@@ -72,7 +71,7 @@ const RankTap = () => {
             wentDate={marker.wentDate.slice(0, 10)}
             id={marker.id}
             type="marker"
-            fav="❌"
+            fav="찜"
           />
         ))}
       {!isMarkerActive &&
@@ -83,8 +82,8 @@ const RankTap = () => {
             nickName={route.nickName}
             wentDate={route.wentDate.slice(0, 10)}
             id={route.id}
-            type="marker"
-            fav="❌"
+            type="route"
+            fav="찜"
           />
         ))}
     </div>
