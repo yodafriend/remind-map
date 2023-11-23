@@ -1,20 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Styles from './RankTap.module.css';
 import RankSelect from '../../common/select/RankSelect';
 import RoundTap from '../../common/btn/RoundTap';
 import Posting from '../../common/userposting/Posting';
+import { instance } from '../../api/customAxios';
 
 const RankTap = () => {
-  const [isMakerActive, setIsActiveMaker] = useState(true);
+  const [isMarkerActive, setIsActiveMaker] = useState(true);
   const [selectedValue, setSelectedValue] = useState('실시간 조회수 TOP 10');
 
   const handleActiveRoute = () => {
-    setIsActiveMaker(!isMakerActive);
+    setIsActiveMaker(!isMarkerActive);
   };
 
   const handleSelectChange = value => {
     setSelectedValue(value);
   };
+
+  /* 배열 변수명 대소문자 주의 */
+  useEffect(() => {
+    const boardType = isMarkerActive === true ? 'marker' : 'route';
+    const value = selectedValue;
+
+    console.log(`setUser${boardType}`);
+    if (value === '실시간 조회수 TOP 10') {
+      instance.get(`/rank/onair/${boardType}`, { count: 10 }).then(response => {
+        if (response.status === 200) {
+          `setUser${boardType}`(response.data);
+        }
+      });
+    }
+  }, []);
 
   const userMarkerArr = [
     {
@@ -41,17 +57,34 @@ const RankTap = () => {
     },
   ];
 
+  const userRouteArr = [];
+
   return (
     <div className={Styles.rankTap}>
       <RankSelect onSelectChange={handleSelectChange} />
-      <RoundTap isMakerActive={isMakerActive} handleActiveRoute={handleActiveRoute} />
-      {isMakerActive &&
+      <RoundTap isMarkerActive={isMarkerActive} handleActiveRoute={handleActiveRoute} />
+      {isMarkerActive &&
         userMarkerArr.map(marker => (
           <Posting
             key={marker.id}
             title={marker.title}
             nickName={marker.nickName}
             wentDate={marker.wentDate.slice(0, 10)}
+            id={marker.id}
+            type="marker"
+            fav="❌"
+          />
+        ))}
+      {!isMarkerActive &&
+        userRouteArr.map(route => (
+          <Posting
+            key={route.id}
+            title={route.title}
+            nickName={route.nickName}
+            wentDate={route.wentDate.slice(0, 10)}
+            id={route.id}
+            type="marker"
+            fav="❌"
           />
         ))}
     </div>
