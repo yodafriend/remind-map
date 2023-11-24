@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-  baseURL: 'https://o5vsijczw6.execute-api.ap-northeast-2.amazonaws.com',
+  baseURL: process.env.REACT_APP_SERVER_URI,
 });
 
 // Closure to keep track of retry status
