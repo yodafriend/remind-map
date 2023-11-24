@@ -40,7 +40,7 @@
 
 .fav {
   border: none;
-  background-color: var(--favorite-color);
+  background-color: var(--sub-color);
   font-size: 12px;
   border-radius: 30px;
   padding: 5px;
@@ -49,5 +49,5 @@
 }
 
 .fav:hover {
-  background-color: gold;
+  background-color: #9fe6b3;
 }

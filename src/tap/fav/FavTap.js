@@ -84,7 +84,7 @@ const FavTap = () => {
               wentDate={marker.wentDate.slice(0, 10)}
               id={marker.id}
               type="marker"
-              fav="찜"
+              fav="❌"
             />
           ))}
         {!isMarkerActive &&
@@ -96,7 +96,7 @@ const FavTap = () => {
               wentDate={route.wentDate.slice(0, 10)}
               id={route.id}
               type="route"
-              fav="찜"
+              fav="❌"
             />
           ))}
       </div>
