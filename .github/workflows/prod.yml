@@ -23,6 +23,7 @@ jobs:
             echo "삭제 완료"
             git clone --branch prod https://github.com/Goorm-Hongsam/remind-map-frontend.git
             docker-compose down
+            docker rm $(docker ps -aq)
             docker rmi -f $(docker images -q)
             docker builder prune -a --force
             docker-compose up -d
