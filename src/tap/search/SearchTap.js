@@ -118,41 +118,43 @@ const SearchTap = ({ onSearchResults }) => {
         {isclick && isMarkerActive && !display && (
           <div className={Styles.posting}>
             <RoundTap isMarkerActive={isMarkerActive} handleActiveRoute={handleActiveRoute} />
-            {isMarkerActive && userMarkerArr.length > 0 ? (
-              userMarkerArr.map(marker => (
-                <Posting
-                  key={marker.id}
-                  title={marker.title}
-                  nickName={marker.nickName}
-                  wentDate={marker.wentDate.slice(0, 10)}
-                  id={marker.id}
-                  fav="찜"
-                  type="marker"
-                />
-              ))
-            ) : (
-              <div>검색 결과가 없어요.</div>
-            )}
+            {isMarkerActive &&
+              (userMarkerArr.length > 0 ? (
+                userMarkerArr.map(marker => (
+                  <Posting
+                    key={marker.id}
+                    title={marker.title}
+                    nickName={marker.nickName}
+                    wentDate={marker.wentDate.slice(0, 10)}
+                    id={marker.id}
+                    type="marker"
+                    fav="❌"
+                  />
+                ))
+              ) : (
+                <div>검색 결과가 없어요.</div>
+              ))}
           </div>
         )}
         {isclick && !isMarkerActive && !display && (
           <div className={Styles.posting}>
             <RoundTap isMarkerActive={isMarkerActive} handleActiveRoute={handleActiveRoute} />
-            {!isMarkerActive && userRouteArr.length > 0 ? (
-              userRouteArr.map(route => (
-                <Posting
-                  key={route.id}
-                  title={route.title}
-                  nickName={route.nickName}
-                  wentDate={route.wentDate.slice(0, 10)}
-                  id={route.id}
-                  fav="찜"
-                  type="route"
-                />
-              ))
-            ) : (
-              <div>검색 결과가 없어요.</div>
-            )}
+            {!isMarkerActive &&
+              (userRouteArr.length > 0 ? (
+                userRouteArr.map(route => (
+                  <Posting
+                    key={route.id}
+                    title={route.title}
+                    nickName={route.nickName}
+                    wentDate={route.wentDate.slice(0, 10)}
+                    id={route.id}
+                    type="route"
+                    fav="❌"
+                  />
+                ))
+              ) : (
+                <div>검색 결과가 없어요.</div>
+              ))}
           </div>
         )}
       </div>
