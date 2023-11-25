@@ -20,7 +20,7 @@ const GroupTap = () => {
   const detail = useMatch('/grouptab/all/:id');
   const navigator = useNavigate();
   const { groupId } = useParams();
-  const { getGroups, getGroup, getGroupmembers, getGroupMarkers, getGroupRoutes } =
+  const { getGroups, getGroup, getGroupmembers, getGroupMarkers, getGroupRoutes, deletGroup } =
     useGroup(groupId);
 
   const ref = useRef(null);

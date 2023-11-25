@@ -17,7 +17,7 @@ export default function GroupUserCard({ member, userName, buttonText, onClick, b
         />
       )}
 
-      <p className="pb-1">{userName}</p>
+      <p className="text-sm pb-1">{userName}</p>
       <div className="grow" />
       {buttonText && (
         <GroupButton
