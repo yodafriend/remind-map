@@ -24,7 +24,7 @@ const RankTap = () => {
     const value = selectedValue;
     if (value === '실시간 조회수 TOP 10') {
       if (isMarkerActive) {
-        instance.get(`/rank?boardType=marker&count=10`).then(response => {
+        instance.get('/rank-marker?count=10').then(response => {
           if (response.data.length !== 0) {
             setUserMarkerArr(response.data);
             console.log(response.data);
@@ -33,7 +33,7 @@ const RankTap = () => {
           }
         });
       } else {
-        instance.get(`/rank?boardType=route&count=10`).then(response => {
+        instance.get('/rank-route?count=10').then(response => {
           if (response.data.length !== 0) {
             setUserRouteArr(response.data);
           } else if (response.data.length === 0) {

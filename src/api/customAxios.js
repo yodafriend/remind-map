@@ -4,7 +4,6 @@ export const instance = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URI,
 });
 
-// Closure to keep track of retry status
 let isRetrying = false;
 
 instance.interceptors.request.use(
