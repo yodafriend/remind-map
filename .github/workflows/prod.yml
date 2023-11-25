@@ -21,8 +21,6 @@ jobs:
             echo "삭제 완료"
             git clone --branch prod https://github.com/Goorm-Hongsam/remind-map-frontend.git
             docker-compose -f docker-compose.frontend.yaml down
-            docker rm nginx
-            docker rm react
             docker rmi -f nginx
             docker rmi -f ubuntu-react
             docker-compose -f docker-compose.frontend.yaml up
