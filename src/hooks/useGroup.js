@@ -76,7 +76,7 @@ const useGroup = (groupId, groupTitle) => {
   const createGroup = async (isTabCreate, isCreate, navigate, groupTitle) => {
     console.log('그룹 생성 그룹 제목', groupTitle);
     try {
-      const result = await instance.post('/group/create', { title: groupTitle });
+      const result = await instance.post(`/group/create`, { title: groupTitle });
       getGroups();
       if (isTabCreate) {
         navigate(`/grouptab/all/${result.data.groupId}`);
