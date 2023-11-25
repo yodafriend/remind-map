@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import GroupInput from '../atom-components/GroupInput';
-import axios from 'axios';
 import useGroup from '../../../../hooks/useGroup';
 import { useMatch, useNavigate } from 'react-router-dom';
 import { seletGroupIdState } from '../../../../recoil/groupAtoms';
 import { useSetRecoilState } from 'recoil';
+import { instance } from '../../../../api/customAxios';
 
 export default function GroupCreate() {
   const [groupTitle, setGroupTitle] = useState('');
@@ -16,7 +16,7 @@ export default function GroupCreate() {
 
   const createGroup = async () => {
     try {
-      const result = await axios.post('/group/create', { groupTitle: groupTitle });
+      const result = await instance.post('/group/create', { groupTitle: groupTitle });
       getGroups();
       if (isTabCreate) {
         navigate(`/grouptab/all/${result.data.groupId}`);
