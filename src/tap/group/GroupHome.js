@@ -13,7 +13,7 @@ export default function GroupHome() {
     <div>
       <div className="flex pt-10">
         <GroupList />
-        <div className="w-full flex flex-col md:flex-row items-centers justify-around">
+        <div className="w-full flex flex-col md:flex-row items-centers justify-around p-5">
           {create && <GroupCreate />}
           {detail && (
             <>

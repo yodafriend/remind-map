@@ -3,7 +3,7 @@ import GroupUserCard from '../atom-components/GroupUserCard';
 
 export default function GroupUserCardWraper({ mambers, title, buttonText, buttonOnClick }) {
   return (
-    <div className="flex items-center flex-col gap-5 w-8/12 md:w-full">
+    <div className="flex items-center flex-col gap-5 w-full overflow-y-scroll max-h-60">
       <p className="text-2xl">{title}</p>
       <div className="w-full flex flex-col gap-3">
         {mambers.map((member, i) => {

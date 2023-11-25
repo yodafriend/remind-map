@@ -3,7 +3,7 @@ import GroupButton from './GroupButton';
 
 export default function GroupInput({ buttonText, setValue, keyDown, buttonOnclick, placeholder }) {
   return (
-    <div className="border-b border-main-color flex relative w-8/12 md:w-full">
+    <div className="border-b border-main-color flex relative w-full">
       <input
         onChange={e => {
           setValue(e.target.value);
