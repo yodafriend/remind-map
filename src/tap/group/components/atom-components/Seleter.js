@@ -30,7 +30,7 @@ export default function Seleter() {
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center relative z-50">
+    <div className="w-full flex flex-col items-center justify-center relative z-50 text-sx">
       <p
         onClick={openGroup}
         className={`${styles.groupTapItem} border p-2 hover:bg-main-color hover:text-white`}
