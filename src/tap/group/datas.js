@@ -6,7 +6,7 @@ export const groupMarkers = [
     fav: true,
     latitude: 0,
     longitude: 1,
-    groupId: 1,
+    groupId: 'asd1',
     groupTitle: '홍삼',
   },
   {
@@ -16,7 +16,7 @@ export const groupMarkers = [
     fav: true,
     latitude: 0,
     longitude: 1,
-    groupId: 1,
+    groupId: 'asd1',
     groupTitle: '홍삼',
   },
   {
@@ -26,7 +26,7 @@ export const groupMarkers = [
     fav: true,
     latitude: 0,
     longitude: 1,
-    groupId: 2,
+    groupId: 'asd2',
     groupTitle: '친구',
   },
   {
@@ -36,7 +36,7 @@ export const groupMarkers = [
     fav: true,
     latitude: 0,
     longitude: 1,
-    groupId: 2,
+    groupId: 'asd2',
     groupTitle: '친구',
   },
   {
@@ -46,7 +46,7 @@ export const groupMarkers = [
     fav: true,
     latitude: 0,
     longitude: 1,
-    groupId: 3,
+    groupId: 'asd3',
     groupTitle: '가족',
   },
   {
@@ -56,7 +56,7 @@ export const groupMarkers = [
     fav: true,
     latitude: 0,
     longitude: 1,
-    groupId: 3,
+    groupId: 'asd3',
     groupTitle: '가족',
   },
   {
@@ -66,7 +66,7 @@ export const groupMarkers = [
     fav: true,
     latitude: 0,
     longitude: 1,
-    groupId: 3,
+    groupId: 'asd3',
     groupTitle: '가족',
   },
   {
@@ -76,7 +76,7 @@ export const groupMarkers = [
     fav: true,
     latitude: 0,
     longitude: 1,
-    groupId: 3,
+    groupId: 'asd3',
     groupTitle: '가족',
   },
 ];

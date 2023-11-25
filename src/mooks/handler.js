@@ -2,6 +2,7 @@ import { rest } from 'msw';
 import { groups } from './groups';
 import { groupMembers } from './groupMembers';
 import { friends } from './friends';
+import { groupMarkers } from './groupMarkers';
 
 const groupIdCreate = groupId => {
   return groupId + 1;
@@ -23,7 +24,7 @@ export const handlers = [
   }),
   rest.get('/group/get/:groupId', (req, res, ctx) => {
     const { groupId } = req.params;
-    let group = groups.find(el => el.groupId === +groupId);
+    let group = groups.find(el => el.groupId === groupId);
 
     if (group) {
       return res(ctx.status(200), ctx.json(group));
@@ -45,15 +46,20 @@ export const handlers = [
     const { groupId } = req.params;
     const arr = [];
     groupMembers.forEach(el => {
-      if (el.groupId === +groupId) {
+      if (el.groupId === groupId) {
         arr.push(el);
       }
     });
     return res(ctx.status(200), ctx.json(arr));
   }),
-  rest.get('/friends', (req, res, ctx) => {
+  rest.get('/group/friends', (req, res, ctx) => {
     console.log(req.body);
 
     return res(ctx.status(200), ctx.json(friends));
+  }),
+  rest.get('/marker/group/:groupId', (req, res, ctx) => {
+    const { groupId } = req.params;
+    console.log(groupId);
+    return res(ctx.status(200), ctx.json(groupMarkers));
   }),
 ];
