@@ -10,7 +10,6 @@ import { useEffect } from 'react';
 import useGroup from './hooks/useGroup';
 import useFriends from './hooks/useFriends';
 
-
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState('');
