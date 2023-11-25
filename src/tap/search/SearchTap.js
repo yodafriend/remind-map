@@ -4,56 +4,19 @@ import SearchInput from '../../common/input/SearchInput';
 import RoundTap from '../../common/btn/RoundTap';
 import Posting from '../../common/userposting/Posting';
 import { instance } from '../../api/customAxios';
-import axios from 'axios';
 
 const SearchTap = ({ onSearchResults }) => {
-  const [isMakerActive, setIsActiveMaker] = useState(true);
+  const [isMarkerActive, setIsActiveMaker] = useState(true);
   const [place, setPlace] = useState('');
   const [savedSearchResults, setSavedSearchResults] = useState([]);
+  const [clickedLocation, setClickedLocation] = useState(null);
 
   const handleActiveRoute = () => {
-    setIsActiveMaker(!isMakerActive);
+    setIsActiveMaker(!isMarkerActive);
   };
 
-  /* axios 요청으로 해당하는 마커만 response로 담기 */
-  const userMarkerArr = [
-    {
-      id: 1,
-      nickName: '정윤수',
-      title: '만석공원',
-      memo: '만석공원에 왔다!',
-      location: {
-        latitude: 127.001443714087,
-        longitude: 37.300455081,
-      },
-      wentDate: '2023-11-02T15:30',
-    },
-    {
-      id: 2,
-      nickName: '황윤',
-      title: '수원역',
-      memo: '수원역에 왔다!',
-      location: {
-        latitude: 127.001443714087,
-        longitude: 37.300455081,
-      },
-      wentDate: '2023-11-02T15:30',
-    },
-  ];
-
-  const userRouteArr = [
-    {
-      id: 2,
-      nickName: '황윤',
-      title: '수원역',
-      memo: '수원역에 왔다!',
-      location: {
-        latitude: 127.001443714087,
-        longitude: 37.300455081,
-      },
-      wentDate: '2023-11-02T15:30',
-    },
-  ];
+  const [userMarkerArr, setUserMarkerArr] = useState([]);
+  const [userRouteArr, setUserRouteArr] = useState([]);
 
   const [isclick, setIsClick] = useState(false);
 
@@ -72,6 +35,8 @@ const SearchTap = ({ onSearchResults }) => {
     });
   };
 
+  const [display, setDisplay] = useState(true);
+
   const handleInputChange = e => {
     setPlace(e.target.value);
   };
@@ -79,67 +44,116 @@ const SearchTap = ({ onSearchResults }) => {
   const handleSubmit = e => {
     e.preventDefault();
     searchPlaces();
+    setDisplay(true);
   };
 
   const click = (x, y) => {
-    setIsClick(!isclick);
+    setClickedLocation({ x, y });
     setPlace('');
+    setIsClick(true);
+    setDisplay(false);
+  };
 
-    if (!isclick && isMakerActive) {
-      instance
-        .get(`/markers?latitude=${x}&longitude=${y}`)
-        .then(response => {
-          userMarkerArr(response.data);
-        })
-        .catch(console.error());
-    } else if (!isclick && !isMakerActive) {
-      instance
-        .get(`/markers?latitude=${x}&longitude=${y}`)
-        .then(response => {
-          userRouteArr(response.data);
-        })
-        .catch(console.error());
+  useEffect(() => {
+    if (clickedLocation) {
+      const { x, y } = clickedLocation;
+      if (isMarkerActive) {
+        instance
+          .get(`/markers?latitude=${x}&longitude=${y}`)
+          .then(response => {
+            console.log(response);
+            if (response.data.length !== 0) {
+              setUserMarkerArr(response.data);
+            } else {
+              alert('데이터가 없습니다.');
+            }
+          })
+          .catch(console.error);
+      } else {
+        instance
+          .get(`/marker-route?latitude=${x}&longitude=${y}`)
+          .then(response => {
+            console.log(response);
+            if (response.data.length !== 0) {
+              setUserRouteArr(response.data);
+            } else {
+              alert('데이터가 없습니다.');
+            }
+          })
+          .catch(console.error);
+      }
     }
+  }, [isMarkerActive, clickedLocation]);
+
+  const handleSearchReset = () => {
+    setSavedSearchResults([]);
+    setIsClick(false);
+    setDisplay(true);
   };
 
   return (
     <div className={Styles.searchTap}>
-      <form onSubmit={handleSubmit}>
-        <SearchInput value={place} onChange={handleInputChange} placeholder="장소를 입력하세요" />
-      </form>
+      <div className={Styles.SearchInputContainer}>
+        <form onSubmit={handleSubmit}>
+          <SearchInput
+            value={place}
+            onChange={handleInputChange}
+            placeholder="장소를 입력하세요"
+            className={Styles.searchInput}
+          />
+        </form>
+        <button className={Styles.searchReset} onClick={handleSearchReset}>
+          리셋
+        </button>
+      </div>
       <div className={Styles.searchMarker}>
         {!isclick &&
+          display &&
           savedSearchResults.map((result, index) => (
             <li onClick={() => click(result.x, result.y)} key={index}>
               <div>{result.place_name}</div>
               <p>{result.road_address_name || result.address_name}</p>
             </li>
           ))}
-        {isclick && isMakerActive && (
+        {isclick && isMarkerActive && !display && (
           <div className={Styles.posting}>
-            <RoundTap isMakerActive={isMakerActive} handleActiveRoute={handleActiveRoute} />
-            {isMakerActive &&
-              userMarkerArr.map(marker => (
-                <Posting
-                  key={marker.id}
-                  title={marker.title}
-                  nickName={marker.nickName}
-                  wentDate={marker.wentDate.slice(0, 10)}
-                />
+            <RoundTap isMarkerActive={isMarkerActive} handleActiveRoute={handleActiveRoute} />
+            {isMarkerActive &&
+              (userMarkerArr.length > 0 ? (
+                userMarkerArr.map(marker => (
+                  <Posting
+                    key={marker.id}
+                    title={marker.title}
+                    nickName={marker.nickName}
+                    wentDate={marker.wentDate.slice(0, 10)}
+                    id={marker.id}
+                    type="marker"
+                    fav="❌"
+                  />
+                ))
+              ) : (
+                <div>검색 결과가 없어요.</div>
               ))}
           </div>
         )}
-        {isclick && !isMakerActive && (
+        {isclick && !isMarkerActive && !display && (
           <div className={Styles.posting}>
-            <RoundTap isMakerActive={isMakerActive} handleActiveRoute={handleActiveRoute} />
-            {!isMakerActive &&
-              userRouteArr.map((route, index) => (
-                <Posting
-                  key={index}
-                  title={route.title}
-                  nickName={route.nickName}
-                  wentDate={route.wentDate.slice(0, 10)}
-                />
+            <RoundTap isMarkerActive={isMarkerActive} handleActiveRoute={handleActiveRoute} />
+            {!isMarkerActive &&
+              (userRouteArr.length > 0 ? (
+                userRouteArr.map(route => (
+                  <Posting
+                    key={route.id}
+                    title={route.title}
+                    nickName={route.nickName}
+                    wentDate={route.wentDate.slice(0, 10)}
+                    id={route.id}
+                    type="route"
+                    fav="❌"
+                  />
+                ))
+              ) : (
+                <div>검색 결과가 없어요.</div>
               ))}
           </div>
         )}
@@ -147,26 +161,5 @@ const SearchTap = ({ onSearchResults }) => {
     </div>
   );
 };
-
-/* {isMakerActive &&
-          userMarkerArr.map((marker, index) => (
-            <Posting
-              key={index}
-              title={marker.title}
-              writer={marker.writer}
-              wentDate={marker.wentDate}
-              fav={marker.fav}
-            />
-          ))}
-        {!isMakerActive &&
-          userRouteArr.map((route, index) => (
-            <Posting
-              key={index}
-              title={route.title}
-              writer={route.writer}
-              wentDate={route.wentDate}
-              fav={route.fav}
-            />
-          ))} */
 
 export default SearchTap;

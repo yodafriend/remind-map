@@ -42,3 +42,18 @@
   align-items: center;
   gap: 15px;
 }
+
+.searchReset {
+  float: left;
+  font-size: var(--text-xs);
+  width: 50px;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  background-color: var(--main-color);
+}
+
+.SearchInputContainer {
+  display: flex;
+  gap: 8px;
+}
