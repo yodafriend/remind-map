@@ -8,6 +8,7 @@ import {
 } from '../recoil/groupAtoms';
 import { useState } from 'react';
 import { instance } from '../api/customAxios';
+import axios from 'axios';
 const useGroup = (groupId, groupTitle) => {
   const setGroups = useSetRecoilState(groupsState);
   const setGroup = useSetRecoilState(groupState);
@@ -76,7 +77,13 @@ const useGroup = (groupId, groupTitle) => {
   const createGroup = async (isTabCreate, isCreate, navigate, groupTitle) => {
     console.log('그룹 생성 그룹 제목', groupTitle);
     try {
-      const result = await instance.post(`/group/create`, { title: groupTitle });
+      const result = await axios.post(
+        `https://remindmap.site/api/group/create`,
+        {
+          title: groupTitle,
+        },
+        { withCredentials: true },
+      );
       getGroups();
       if (isTabCreate) {
         navigate(`/grouptab/all/${result.data.groupId}`);
