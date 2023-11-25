@@ -35,7 +35,7 @@ export default function Seleter() {
         onClick={openGroup}
         className={`${styles.groupTapItem} border p-2 hover:bg-main-color hover:text-white`}
       >
-        {group.groupTitle}
+        {group.title}
       </p>
       <ul
         className={`${styles.groupTapItem} ${
@@ -51,7 +51,7 @@ export default function Seleter() {
               key={i}
               className="p-2 border border-b hover:bg-main-color hover:text-white transition-all"
             >
-              {group.groupTitle}
+              {group.title}
             </li>
           );
         })}

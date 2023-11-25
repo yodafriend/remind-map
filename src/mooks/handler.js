@@ -13,9 +13,9 @@ export const handlers = [
 
   rest.post('/group/create', (req, res, ctx) => {
     const lastGroupIndex = groups.length - 1;
-    const groupTitle = req.body.groupTitle;
+    const title = req.body.title;
     const groupId = groupIdCreate(groups[lastGroupIndex].groupId);
-    const group = { groupId: groupId, groupTitle: groupTitle };
+    const group = { groupId: groupId, groupTitle: title };
     groups.push(group);
     return res(ctx.status(200), ctx.json({ groupId }));
   }),
@@ -53,8 +53,6 @@ export const handlers = [
     return res(ctx.status(200), ctx.json(arr));
   }),
   rest.get('/group/friends', (req, res, ctx) => {
-    console.log(req.body);
-
     return res(ctx.status(200), ctx.json(friends));
   }),
   rest.get('/marker/group/:groupId', (req, res, ctx) => {
