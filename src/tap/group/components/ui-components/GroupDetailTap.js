@@ -9,7 +9,7 @@ export default function GroupDetailTap({ isDetailGroup }) {
   const { type, groupId } = useParams();
   const groups = useRecoilValue(groupsState);
   const seletGroupIndex = useRecoilValue(seletGroupIndexState);
-  const { getGroupmembers, groupMembers } = useGroup(2);
+  const { getGroupmembers, groupMembers } = useGroup(groupId);
   useEffect(() => {
     getGroupmembers();
   });

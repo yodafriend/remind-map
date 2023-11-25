@@ -3,10 +3,13 @@ import GroupInput from '../atom-components/GroupInput';
 import axios from 'axios';
 import useGroup from '../../../../hooks/useGroup';
 import { useMatch, useNavigate } from 'react-router-dom';
+import { seletGroupIdState } from '../../../../recoil/groupAtoms';
+import { useSetRecoilState } from 'recoil';
 
 export default function GroupCreate() {
   const [groupTitle, setGroupTitle] = useState('');
   const { getGroups } = useGroup();
+  const setSeletGroupId = useSetRecoilState(seletGroupIdState);
   const navigate = useNavigate();
   const isTabCreate = useMatch('/grouptab/create/:id');
   const isCreate = useMatch('/group/create/:id');
@@ -17,9 +20,11 @@ export default function GroupCreate() {
       getGroups();
       if (isTabCreate) {
         navigate(`/grouptab/all/${result.data.groupId}`);
+        setSeletGroupId(result.data.groupId);
       }
       if (isCreate) {
         navigate(`/group/detail/${result.data.groupId}`);
+        setSeletGroupId(result.data.groupId);
       }
     } catch (error) {
       console.log(error);
