@@ -8,38 +8,36 @@ import Redirect from './api/Redirect';
 import GroupHome from './tap/group/GroupHome';
 import { useEffect } from 'react';
 import useGroup from './hooks/useGroup';
-import { RecoilRoot } from 'recoil';
+import useFriends from './hooks/useFriends';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState('');
   const { getGroups } = useGroup();
-
+  const { getGroupInvite } = useFriends();
   useEffect(() => {
     getGroups();
+    getGroupInvite();
   }, []);
 
   return (
     <BrowserRouter>
-      <RecoilRoot>
-        <div className="App">
-          <Header />
-          <Routes>
-            <Route
-              path="/:tab_name?/:type?/:groupId?"
-              element={
-                <>
-                  {/* <Main searchResults={searchResults} onMarkerSelect={setSelectedMarker} /> */}
-                  <Sidebar onSearchResults={setSearchResults} selectedMarker={selectedMarker} />
-                </>
-              }
-            />
-            <Route path="/group/:type?/:groupId?" element={<GroupHome />} />
-            <Route exact path="/kakao/callback" element={<Redirect />} />
-          </Routes>
-          {/*<PostingModal />*/}
-        </div>
-      </RecoilRoot>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route
+            path="/:tabName?/:type?/:groupId?"
+            element={
+              <>
+                <Main searchResults={searchResults} onMarkerSelect={setSelectedMarker} />
+                <Sidebar onSearchResults={setSearchResults} selectedMarker={selectedMarker} />
+              </>
+            }
+          />
+          <Route path="/group/:type?/:groupId?" element={<GroupHome />} />
+          <Route exact path="/kakao/callback" element={<Redirect />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
