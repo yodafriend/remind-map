@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import GroupInput from '../atom-components/GroupInput';
 import useGroup from '../../../../hooks/useGroup';
 import { useMatch, useNavigate } from 'react-router-dom';
@@ -13,21 +13,23 @@ export default function GroupCreate() {
   const navigate = useNavigate();
   const isTabCreate = useMatch('/grouptab/create/:id');
   const isCreate = useMatch('/group/create/:id');
-
+  useEffect(() => {
+    console.log(groupTitle);
+  }, [groupTitle]);
   const createGroup = async () => {
-    const copyTitle = groupTitle;
-    console.log('그룹이름 : ', copyTitle);
+    console.log('그룹제목 : ', groupTitle);
     try {
-      const result = await instance.post('/group/create', { title: copyTitle });
-      getGroups();
-      if (isTabCreate) {
-        navigate(`/grouptab/all/${result.data.groupId}`);
-        setSeletGroupId(result.data.groupId);
-      }
-      if (isCreate) {
-        navigate(`/group/detail/${result.data.groupId}`);
-        setSeletGroupId(result.data.groupId);
-      }
+      const result = await instance.post('/group/create', { title: groupTitle });
+      console.log(result);
+      // getGroups();
+      // if (isTabCreate) {
+      //   navigate(`/grouptab/all/${result.data.groupId}`);
+      //   setSeletGroupId(result.data.groupId);
+      // }
+      // if (isCreate) {
+      //   navigate(`/group/detail/${result.data.groupId}`);
+      //   setSeletGroupId(result.data.groupId);
+      // }
     } catch (error) {
       console.log(error);
     }

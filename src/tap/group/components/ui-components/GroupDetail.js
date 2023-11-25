@@ -25,7 +25,7 @@ export default function GroupDetail() {
 
   return (
     <div className="flex flex-col items-center gap-5 mt-3 transition-all">
-      <h1 className=" text-4xl">{group.groupTitle}</h1>
+      <h1 className=" text-4xl">{group.title}</h1>
       <GroupInput
         setValue={setGroupTitle}
         buttonText="수정"
