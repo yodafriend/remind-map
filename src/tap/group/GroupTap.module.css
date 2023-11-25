@@ -12,8 +12,9 @@
 .groupTapItem {
   border-color: var(--main-color);
   font-size: var(--text-sm);
-  width: 80%;
+  width: 90%;
   transition: 0.5s all;
+  cursor: pointer;
 }
 .groupDetailTap {
   height: calc(100vh - 40px);
