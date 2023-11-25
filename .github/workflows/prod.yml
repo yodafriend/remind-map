@@ -26,5 +26,5 @@ jobs:
             docker rm nginx
             docker rmi -f nginx
             docker rmi -f ubuntu-react
-            docker-compose -f docker-compose.front.yaml up
+            docker-compose -f docker-compose.front.yaml up -d
             
