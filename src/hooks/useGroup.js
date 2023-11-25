@@ -54,16 +54,22 @@ const useGroup = (groupId, groupTitle) => {
       console.log(error);
     }
   };
-  const createGroup = async () => {
-    try {
-      const result = await instance.post('/group/create', { groupTitle: groupTitle });
-      console.log(result.data);
-
-      getGroups();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const createGroup = async (isTabCreate, isCreate, navigate, groupTitle) => {
+  //   try {
+  //     const result = await instance.post('/group/create', { groupTitle: groupTitle });
+  //     getGroups();
+  //     if (isTabCreate) {
+  //       navigate(`/grouptab/all/${result.data.groupId}`);
+  //       setSeletGroupId(result.data.groupId);
+  //     }
+  //     if (isCreate) {
+  //       navigate(`/group/detail/${result.data.groupId}`);
+  //       setSeletGroupId(result.data.groupId);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   const getGroupMarkers = async () => {
     try {
       const result = await instance.get(`/marker/group/${groupId}`);
@@ -107,7 +113,6 @@ const useGroup = (groupId, groupTitle) => {
     getGroup,
     getGroupmembers,
     groupMembers,
-    createGroup,
     getGroupMarkers,
     getGroupRoutes,
     deletGroup,
