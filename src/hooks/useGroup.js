@@ -8,7 +8,6 @@ import {
 } from '../recoil/groupAtoms';
 import { useState } from 'react';
 import { instance } from '../api/customAxios';
-
 const useGroup = (groupId, groupTitle) => {
   const setGroups = useSetRecoilState(groupsState);
   const setGroup = useSetRecoilState(groupState);
@@ -54,22 +53,6 @@ const useGroup = (groupId, groupTitle) => {
       console.log(error);
     }
   };
-  // const createGroup = async (isTabCreate, isCreate, navigate, groupTitle) => {
-  //   try {
-  //     const result = await instance.post('/group/create', { groupTitle: groupTitle });
-  //     getGroups();
-  //     if (isTabCreate) {
-  //       navigate(`/grouptab/all/${result.data.groupId}`);
-  //       setSeletGroupId(result.data.groupId);
-  //     }
-  //     if (isCreate) {
-  //       navigate(`/group/detail/${result.data.groupId}`);
-  //       setSeletGroupId(result.data.groupId);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
   const getGroupMarkers = async () => {
     try {
       const result = await instance.get(`/marker/group/${groupId}`);
@@ -90,6 +73,24 @@ const useGroup = (groupId, groupTitle) => {
       console.log('그룹 루트 가져오기 실패', error);
     }
   };
+  const createGroup = async (isTabCreate, isCreate, navigate, groupTitle) => {
+    console.log('그룹 생성 그룹 제목', groupTitle);
+    try {
+      const result = await instance.post('/group/create', { title: groupTitle });
+      getGroups();
+      if (isTabCreate) {
+        navigate(`/grouptab/all/${result.data.groupId}`);
+        setSeletGroupId(result.data.groupId);
+      }
+      if (isCreate) {
+        navigate(`/group/detail/${result.data.groupId}`);
+        setSeletGroupId(result.data.groupId);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const deletGroup = async () => {
     try {
       const result = await instance.delete(`/group/remove/${groupId}`);
@@ -117,6 +118,7 @@ const useGroup = (groupId, groupTitle) => {
     getGroupRoutes,
     deletGroup,
     editGroup,
+    createGroup,
   };
 };
 

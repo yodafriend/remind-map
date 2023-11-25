@@ -15,7 +15,7 @@ export const handlers = [
     const lastGroupIndex = groups.length - 1;
     const title = req.body.title;
     const groupId = groupIdCreate(groups[lastGroupIndex].groupId);
-    const group = { groupId: groupId, groupTitle: title };
+    const group = { groupId: groupId, title: title };
     groups.push(group);
     return res(ctx.status(200), ctx.json({ groupId }));
   }),
