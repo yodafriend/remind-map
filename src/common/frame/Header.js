@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import Styles from './Header.module.css';
+import { AiFillHome } from 'react-icons/ai';
+import { HiUserGroup } from 'react-icons/hi2';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { UserId } from '../../store/UserId';
 import { UserLogin } from '../../store/UserLogin';
 import { UserProfile } from '../../store/UserProfile';
 import { UserNickname } from '../../store/UserNickname';
 import { instance } from '../../api/customAxios';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isLogined, setIsLogined] = useRecoilState(UserLogin);
@@ -57,7 +60,9 @@ const Header = () => {
 
   return (
     <header className={Styles.header}>
-      <div className={Styles.title}>📌 RemindMap</div>
+      <Link to="/" className={Styles.title}>
+        📌 RemindMap
+      </Link>
       {isLogined && profileImg ? (
         <div className={Styles.userInfo} onClick={toggleDropdown}>
           <img className={Styles.userPhoto} src={profileImg} alt="유저 프로필" />
@@ -67,6 +72,9 @@ const Header = () => {
               <button onClick={handleLogout}>로그아웃</button>
             </div>
           )}
+          <Link to="/group">
+            <HiUserGroup className={Styles.home} />
+          </Link>
         </div>
       ) : (
         <button className={Styles.loginBtn} onClick={handleLogin}>

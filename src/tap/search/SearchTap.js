@@ -65,7 +65,7 @@ const SearchTap = ({ onSearchResults }) => {
             if (response.data.length !== 0) {
               setUserMarkerArr(response.data);
             } else {
-              alert('데이터가 없습니다.');
+              alert('검색 결과가 없습니다.');
             }
           })
           .catch(console.error);
@@ -77,7 +77,7 @@ const SearchTap = ({ onSearchResults }) => {
             if (response.data.length !== 0) {
               setUserRouteArr(response.data);
             } else {
-              alert('데이터가 없습니다.');
+              alert('검색 결과가 없습니다.');
             }
           })
           .catch(console.error);
