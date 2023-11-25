@@ -19,7 +19,7 @@ const useGroup = (groupId, groupTitle) => {
 
   const getGroups = async () => {
     try {
-      const result = await instance.get('/group/getall');
+      const result = await instance.get(`/group/getall`);
       const copyGroups = [...result.data];
       setGroups(copyGroups);
       console.log('그룹들 가져오기 : ', copyGroups);

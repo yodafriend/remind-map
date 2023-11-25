@@ -16,7 +16,7 @@ export default function GroupCreate() {
 
   const createGroup = async () => {
     try {
-      const result = await instance.post('/group/create', { groupTitle: groupTitle });
+      const result = await instance.post('/group/create', { title: groupTitle });
       getGroups();
       if (isTabCreate) {
         navigate(`/grouptab/all/${result.data.groupId}`);
