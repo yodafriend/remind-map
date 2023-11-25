@@ -42,10 +42,11 @@ const useFriends = () => {
   };
   const sendInGroup = async member => {
     const ids = [];
-    ids.push({ member: member.id });
+    ids.push({ memberId: member.id });
     console.log('그룹 초대DB 요청 데이터 =>', '지금 그룹 아이디 : ', seletGroupId, '멤버ID', ids);
     try {
       const result = await instance.post(`/invite/${seletGroupId}`, ids);
+      //[{memberID : 123}]
       console.log('초대 완료 :', result);
     } catch (error) {
       console.log(error);

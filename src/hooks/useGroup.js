@@ -74,30 +74,79 @@ const useGroup = (groupId, groupTitle) => {
       console.log('그룹 루트 가져오기 실패', error);
     }
   };
+
+  //try catch 지우기
+  //비동기 없이
+  //뒤 함ㄴ수 지우고
+  // 1. 기본
   const createGroup = async (isTabCreate, isCreate, navigate, groupTitle) => {
     console.log('그룹 생성 그룹 제목', groupTitle);
     try {
-      const result = await axios.post(
-        `https://remindmap.site/api/group/create`,
-        {
-          title: groupTitle,
-        },
-        { withCredentials: true },
-      );
+      const result = await instance.post('/group/create', { title: groupTitle });
+      console.log(result);
       getGroups();
-      if (isTabCreate) {
-        navigate(`/grouptab/all/${result.data.groupId}`);
-        setSeletGroupId(result.data.groupId);
-      }
-      if (isCreate) {
-        navigate(`/group/detail/${result.data.groupId}`);
-        setSeletGroupId(result.data.groupId);
-      }
+      // if (isTabCreate) {
+      //   navigate(`/grouptab/all/${result.data.groupId}`);
+      //   setSeletGroupId(result.data.groupId);
+      // }
+      // if (isCreate) {
+      //   navigate(`/group/detail/${result.data.groupId}`);
+      //   setSeletGroupId(result.data.groupId);
+      // }
     } catch (error) {
       console.log(error);
     }
   };
-
+  // 2.비동기 제거
+  // const createGroup = (isTabCreate, isCreate, navigate, groupTitle) => {
+  //   console.log('그룹 생성 그룹 제목', groupTitle);
+  //   try {
+  //     const result = instance.post('/group/create', { title: groupTitle });
+  //     console.log(result);
+  //     getGroups();
+  //     if (isTabCreate) {
+  //       navigate(`/grouptab/all/${result.data.groupId}`);
+  //       setSeletGroupId(result.data.groupId);
+  //     }
+  //     if (isCreate) {
+  //       navigate(`/group/detail/${result.data.groupId}`);
+  //       setSeletGroupId(result.data.groupId);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // try-catch 제거
+  // const createGroup = async (isTabCreate, isCreate, navigate, groupTitle) => {
+  //   await instance
+  //     .post('/group/create', { title: groupTitle })
+  //     .then(res => {
+  //       console.log(res);
+  //       getGroups();
+  //       if (isTabCreate) {
+  //         navigate(`/grouptab/all/${res.data.groupId}`);
+  //         setSeletGroupId(res.data.groupId);
+  //       }
+  //       if (isCreate) {
+  //         navigate(`/group/detail/${res.data.groupId}`);
+  //         setSeletGroupId(res.data.groupId);
+  //       }
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // };
+  // try-catch , 비동기 제거
+  // const createGroup = (isTabCreate, isCreate, navigate, groupTitle) => {
+  //   instance
+  //     .post('/group/create', { title: groupTitle })
+  //     .then(res => {
+  //       console.log(res);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // };
   const deletGroup = async () => {
     try {
       const result = await instance.delete(`/group/remove/${groupId}`);
