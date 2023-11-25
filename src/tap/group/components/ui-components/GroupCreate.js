@@ -15,8 +15,10 @@ export default function GroupCreate() {
   const isCreate = useMatch('/group/create/:id');
 
   const createGroup = async () => {
+    const copyTitle = groupTitle;
+    console.log('그룹이름 : ', copyTitle);
     try {
-      const result = await instance.post('/group/create', { title: groupTitle });
+      const result = await instance.post('/group/create', { title: copyTitle });
       getGroups();
       if (isTabCreate) {
         navigate(`/grouptab/all/${result.data.groupId}`);
