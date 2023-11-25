@@ -1,11 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './GroupTap.module.css';
-
-import { groupMarkers } from '../group/datas';
 import Posting from '../../common/userposting/Posting';
-
 import { useMatch, useNavigate, useParams } from 'react-router-dom';
-
 import useGroup from '../../hooks/useGroup';
 import GroupDetail from './components/ui-components/GroupDetail';
 import GroupFriends from './components/ui-components/GroupFriends';
@@ -13,17 +9,22 @@ import GroupButton from './components/atom-components/GroupButton';
 import GroupCreate from './components/ui-components/GroupCreate';
 import Seleter from './components/atom-components/Seleter';
 import DatePicker from './components/atom-components/DatePicker';
+import { groupMarkersState } from '../../recoil/groupAtoms';
+import { useRecoilValue } from 'recoil';
+import { formatDateWithDay } from '../../util/formatDateWithDay';
 
 const GroupTap = () => {
+  const [isDetailGroup, setIsDetailGroup] = useState(false);
+  const groupMarkers = useRecoilValue(groupMarkersState);
   const create = useMatch('/grouptab/create/:id');
   const detail = useMatch('/grouptab/all/:id');
   const navigator = useNavigate();
   const { groupId } = useParams();
-  const { getGroups, getGroup, getGroupmembers } = useGroup(groupId);
-  const [isDetailGroup, setIsDetailGroup] = useState(false);
+  const { getGroups, getGroup, getGroupmembers, getGroupMarkers, getGroupRoutes } =
+    useGroup(groupId);
+
   const ref = useRef(null);
   useEffect(() => {
-    // ref.current가 null이 아닌 경우에만 observe 호출
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         setTimeout(() => {
@@ -44,7 +45,6 @@ const GroupTap = () => {
       observer.observe(ref.current);
     }
 
-    // 컴포넌트가 언마운트될 때 정리(clean-up)를 위한 함수
     return () => {
       if (ref.current) {
         observer.unobserve(ref.current);
@@ -56,6 +56,8 @@ const GroupTap = () => {
     getGroups();
     getGroup();
     getGroupmembers();
+    getGroupMarkers();
+    getGroupRoutes();
   }, [groupId]);
 
   const onCreateTab = () => {
@@ -93,15 +95,14 @@ const GroupTap = () => {
         >
           {groupMarkers.map((marker, i) => {
             return (
-              +groupId === marker.groupId && (
-                <Posting
-                  key={i}
-                  title={marker.title}
-                  writer={marker.writer}
-                  date={marker.date}
-                  fav={marker.fav}
-                />
-              )
+              <Posting
+                key={i}
+                title={marker.title}
+                nickName={marker.nickName}
+                wentDate={formatDateWithDay(marker.wentDate)}
+                latitude={marker.latitude}
+                longitude={marker.longitude}
+              />
             );
           })}
         </div>
@@ -110,7 +111,7 @@ const GroupTap = () => {
       <div
         className={`${
           styles.groupDetailTap
-        } opacity-0 fixed h-screen overflow-y-scroll left-20 p-3 ${
+        } opacity-0 fixed h-screen overflow-y-scroll left-20 p-5 ${
           isDetailGroup ? styles.open : styles.close
         } `}
       >
