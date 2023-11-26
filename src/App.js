@@ -12,13 +12,19 @@ import useFriends from './hooks/useFriends';
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
-  const [selectedMarker, setSelectedMarker] = useState('');
+  const [selectedMarker, setSelectedMarker] = useState(null);
+  const [enableMarkerCreation, setEnableMarkerCreation] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState('');
+  const [sidebarData, setSidebarData] = useState(null);
   const { getGroups } = useGroup();
   const { getGroupInvite } = useFriends();
   useEffect(() => {
     getGroups();
     getGroupInvite();
   }, []);
+  const handleDataFromSidebarContent = data => {
+    setSidebarData(data);
+  };
   return (
     <BrowserRouter>
       <div className="App">
@@ -28,8 +34,21 @@ function App() {
             path="/:tabName?/:type?/:groupId?"
             element={
               <>
-                <Main searchResults={searchResults} onMarkerSelect={setSelectedMarker} />
-                <Sidebar onSearchResults={setSearchResults} selectedMarker={selectedMarker} />
+                <Main
+                  searchResults={searchResults}
+                  onMarkerSelect={setSelectedMarker}
+                  enableMarkerCreation={enableMarkerCreation}
+                  selectedLocation={selectedLocation}
+                  sidebarData={sidebarData}
+                  setEnableMarkerCreation={setEnableMarkerCreation}
+                />
+                <Sidebar
+                  onSearchResults={setSearchResults}
+                  selectedMarker={selectedMarker}
+                  onEnableMarkerCreation={setEnableMarkerCreation}
+                  onPostClick={setSelectedLocation}
+                  onDataFromSidebarContent={handleDataFromSidebarContent}
+                />
               </>
             }
           />
