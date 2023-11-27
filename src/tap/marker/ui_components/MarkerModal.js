@@ -7,6 +7,7 @@ import { MdCheckBox } from 'react-icons/md';
 import '../../../common/userposting/swiper-bundle.css';
 import { instance } from '../../../api/customAxios';
 import axios from 'axios';
+import { response } from 'msw';
 const { defaultImg } = {
   defaultImg: 'https://i.pinimg.com/564x/a4/ac/dd/a4acdd0fc741bf7ee7ffaeb3ed87dbee.jpg',
 };
@@ -94,7 +95,7 @@ const MarkerModal = ({ groupId, data, onClose, onFormData }) => {
     //여기 형식이 이상
 
     formDataObj.append(
-      'request',
+      'request :',
       JSON.stringify({
         title: formData.title,
         memo: formData.memo,
@@ -111,17 +112,19 @@ const MarkerModal = ({ groupId, data, onClose, onFormData }) => {
       console.log(key, value);
     }
     console.log(formData, '드가자!!!!!!!!!');
-    try {
-      const response = await axios.post(`marker/group/${groupId}`, formDataObj, {
+    instance
+      .post(`marker/group/${groupId}`, formDataObj, {
         headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(err => {
+        console.log(err);
       });
-      console.log(response.data);
-      // 성공 처리 로직
-    } catch (error) {
-      console.error('Error:', error);
-      // 실패 처리 로직
-    }
+    // 성공 처리 로직
   };
+  // 실패 처리 로직
   return (
     <div className={Styles.MarkerpostingModal}>
       <button className={Styles.closeButton} onClick={onClose}>
