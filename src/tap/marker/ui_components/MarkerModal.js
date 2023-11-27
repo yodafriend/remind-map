@@ -7,7 +7,6 @@ import { MdCheckBox } from 'react-icons/md';
 import '../../../common/userposting/swiper-bundle.css';
 import { instance } from '../../../api/customAxios';
 import axios from 'axios';
-import { response } from 'msw';
 const { defaultImg } = {
   defaultImg: 'https://i.pinimg.com/564x/a4/ac/dd/a4acdd0fc741bf7ee7ffaeb3ed87dbee.jpg',
 };
@@ -88,14 +87,15 @@ const MarkerModal = ({ groupId, data, onClose, onFormData }) => {
       setImages(prevImages => prevImages.concat(fileArray));
     }
   };
-  const handleSubmit = async e => {
+  console.log(images);
+  const handleSubmit = e => {
     e.preventDefault();
     const formDataObj = new FormData();
 
     //여기 형식이 이상
 
     formDataObj.append(
-      'request :',
+      'request',
       JSON.stringify({
         title: formData.title,
         memo: formData.memo,
@@ -106,12 +106,13 @@ const MarkerModal = ({ groupId, data, onClose, onFormData }) => {
     );
 
     if (fileInputRef.current.files[0]) {
-      formDataObj.append('file', fileInputRef.current.files[0]);
+      formDataObj.append('file', [fileInputRef.current.files[0]]);
     }
+
     for (let [key, value] of formDataObj.entries()) {
       console.log(key, value);
     }
-    console.log(formData, '드가자!!!!!!!!!');
+    console.log(formDataObj.file, '드가자!!!!!!!!!');
     instance
       .post(`marker/group/${groupId}`, formDataObj, {
         headers: { 'Content-Type': 'multipart/form-data' },
@@ -122,9 +123,8 @@ const MarkerModal = ({ groupId, data, onClose, onFormData }) => {
       .catch(err => {
         console.log(err);
       });
-    // 성공 처리 로직
   };
-  // 실패 처리 로직
+
   return (
     <div className={Styles.MarkerpostingModal}>
       <button className={Styles.closeButton} onClick={onClose}>
