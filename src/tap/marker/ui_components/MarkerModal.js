@@ -113,16 +113,14 @@ const MarkerModal = ({ groupId, data, onClose, onFormData }) => {
       console.log(key, value);
     }
     console.log(formDataObj.file, '드가자!!!!!!!!!');
-    instance
-      .post(`marker/group/${groupId}`, formDataObj, {
+    try {
+      const response = await instance.post(`marker/group/${groupId}`, formDataObj, {
         headers: { 'Content-Type': 'multipart/form-data' },
-      })
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch(err => {
-        console.log(err);
       });
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
