@@ -5,84 +5,59 @@
   <h3 align="center">REMIND-MAP</h3>
 
   <p align="center">
-    연인 , 친구 , 가족들과 추억을 공유하는 MAP
-    <br />
-    <a href="https://github.com/yodafriend/remind-map"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/yodafriend/remind-map">View Demo</a>
-    ·
-    <a href="https://github.com/yodafriend/remind-map/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/yodafriend/remind-map/issues">Request Feature</a>
+    연인 , 친구 , 가족들과 추억을 공유하는 REMIND-MAP
+
   </p>
 </div>
 <br/>
 
+<!-- ABOUT THE PROJECT -->
 
-# Getting Started with Create React App
+## About The Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+연인 , 친구 , 가족들과 추억을 공유하는 MAP 프로젝트었습니다.
 
-## Available Scripts
+만든 이유:
 
-In the project directory, you can run:
+- 추억을 생성하여 특정 인물 및 여러 사람과 공유
+- 사진으로는 기억하기 힘든 추억들을 설명 및 날짜를 통하여 추억을 상기
+- 다른 사람들이 생성한 Route는 어떠한지 비교가능한 SNS기능을 통하여 더 좋은 루트가 있다면 공유
 
-### `yarn start`
+### Built With
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- Spring Boot
+- Docker
+- Tailwind CSS
+- AXIOS
+- Redis
+- MySQL
+- Recoil
+- KAKAO API
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `yarn test`
+로컬 환경에서 설정할 수 있는 방법입니다.
+### Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+아래의 순서대로 프로젝트를 구성해주세요
 
-### `yarn build`
+1. Clone the repo
+   ```sh
+   git clone https://github.com/yodafriend/remind-map.git
+   ```
+2. module 설치 및 husky 실행
+   ```sh
+   npm install
+   ```
+3. 해당 프로젝트 실행
+   ```sh
+   # 프로젝트 root 위치
+   npm start
+   ```
+## Roadmap
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-
-
-
-### `yarn build` fails to minify
-
+- [ ] KAKAO API를 통한 회원 가입 및 로그인 기능 구현
+- [ ] 기본적인 틀과 사용자 인터페이스(UI) 설계
+- [ ] 그룹 생성 구현
+- [ ] KAKAO MAP API를 통한 Marker 생성 및 Route 생성 기능 구현
