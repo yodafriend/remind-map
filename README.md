@@ -1,3 +1,25 @@
+<br />
+<div align="center">
+  <a href="https://github.com/yodafriend/remind-map">
+  </a>
+  <h3 align="center">REMIND-MAP</h3>
+
+  <p align="center">
+    연인 , 친구 , 가족들과 추억을 공유하는 MAP
+    <br />
+    <a href="https://github.com/yodafriend/remind-map"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/yodafriend/remind-map">View Demo</a>
+    ·
+    <a href="https://github.com/yodafriend/remind-map/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/yodafriend/remind-map/issues">Request Feature</a>
+  </p>
+</div>
+<br/>
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
